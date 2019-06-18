@@ -2,8 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "./lib/hotcss/hotcss.js";
+import VeeValidate from "vee-validate";
+import helper from "./lib/helper";
 
 Vue.config.productionTip = false;
+
+Vue.use(VeeValidate);
 
 new Vue({
   router,
