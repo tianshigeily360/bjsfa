@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import AddShop from "./views/AddShop.vue";
-import Activity from "./views/shop-activity";
+import Activity from "./views/shopCar/shop-activity";
 Vue.use(Router);
 
 export default new Router({
