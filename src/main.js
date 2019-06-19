@@ -3,8 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./lib/hotcss/hotcss.js";
-import VeeValidate from "vee-validate";
+import VeeValidate, { Field } from "vee-validate";
 import helper from "./lib/helper";
+// import MintUI from "mint-ui";
+import "mint-ui/lib/style.css";
+import MintUI from "mint-ui";
+
+Vue.use(MintUI);
 
 Vue.config.productionTip = false;
 

@@ -4,7 +4,7 @@
 
 <script>
 import { mapMutations } from "vuex";
-import { Indicator, Toast } from "mint-ui";
+// import { Indicator, Toast, Field } from "mint-ui";
 import "../assets/font/iconfont.css";
 import services from "../service/api";
 export default {
