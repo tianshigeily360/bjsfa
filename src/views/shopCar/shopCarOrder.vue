@@ -6,7 +6,7 @@
     <!-- 搜索区域 -->
     <div class="search clearfix">
       <div class="inputBox clearfix">
-        <input type="text" placeholder="点击进行搜索~" />
+        <input type="text" placeholder="点击进行搜索" />
         <div class="icon iconfont icon-xiazai17"></div>
       </div>
       <div class="rwm">
@@ -15,25 +15,35 @@
     </div>
     <!-- tab 标签切换 -->
     <div class="tab">
-      <div class="tabItem">促销</div>
-      <div class="tabItem">促销</div>
-      <div class="tabItem">促销</div>
-      <div class="tabItem">促销</div>
-      <div class="tabItem">促销</div>
+      <ul>
+        <li class="tabItem" v-for="item in orderMenuList" :key="item.id">
+          {{ item.menuName }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import topheader from "../../components/TopHeader";
+import api from "../../service/api";
 
 export default {
   name: "order",
   data() {
-    return {};
+    return {
+      orderMenuList: []
+    };
   },
   components: {
     topheader
+  },
+  created() {
+    api.getOrderMenu().then(res => {
+      res.data.forEach(item => {
+        this.orderMenuList.push(item);
+      });
+    });
   }
 };
 </script>
@@ -43,7 +53,7 @@ export default {
   height: px2rem(104);
   .inputBox {
     margin-left: px2rem(30);
-    margin-top: px2rem(42);
+    margin-top: px2rem(22);
     float: left;
     width: 80%;
     position: relative;
@@ -63,7 +73,7 @@ export default {
     }
   }
   .rwm {
-    padding-top: px2rem(44);
+    padding-top: px2rem(24);
     .icon {
       font-size: px2rem(60);
       text-align: center;
@@ -71,16 +81,23 @@ export default {
   }
 }
 .tab {
-  height: px2rem(90);
-  // box-sizing: border-box;
-  // padding-top: px2rem(30);
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
   ul {
+    height: px2rem(90);
     display: flex;
     justify-content: space-between;
     align-items: center;
     .tabItem {
+      flex: 1;
       font-size: px2rem(28);
+      height: px2rem(60);
+      line-height: px2rem(60);
       text-align: center;
+      border-right: 1px solid #808080;
+      &:last-child {
+        border-right: none;
+      }
     }
   }
 }
