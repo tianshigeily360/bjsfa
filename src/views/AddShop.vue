@@ -4,22 +4,17 @@
       <div slot="r"></div>
     </TopHeader>
     <div class="shopmap">
-      <img
-        src="../assets/map.png"
-        alt=""
-      >
+      <img src="../assets/map.png" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-import TopHeader from '../components/TopHeader';
+import TopHeader from "../components/TopHeader";
 export default {
-  name: 'AddShop',
+  name: "AddShop",
   data() {
-    return {
-
-    };
+    return {};
   },
   components: {
     TopHeader
@@ -27,5 +22,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
