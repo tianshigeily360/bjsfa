@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import "../assets/font/iconfont.css";
+
 export default {
   name: "tophead",
   props: ["title", "backurl"],
