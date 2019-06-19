@@ -21,6 +21,16 @@ img {
   padding: 0;
 }
 
+/* 清除浮动 */
+.clearfix::before, .clearfix::after {
+  display: table;
+  content: "";
+}
+
+.clearfix::after {
+  clear: both;
+}
+
 fieldset,
 img {
   border: 0;
@@ -66,7 +76,6 @@ input {
 select,
 input,
 textarea {
-  font-size: 12px;
   margin: 0;
 }
 
@@ -88,5 +97,5 @@ table {
 body {
   color: #333;
   /* padding: 5px 0; */
-  font: 12px/20px 'PingFang SC', 'SimSun', '宋体', 'Arial Narrow', HELVETICA;
+  /* font: 12px/20px 'PingFang SC', 'SimSun', '宋体', 'Arial Narrow', HELVETICA; */
 }

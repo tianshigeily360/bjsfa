@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import AddShop from "./views/AddShop.vue";
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
+import AddShop from "./views/addShop/AddShop.vue";
 
 Vue.use(Router);
 
