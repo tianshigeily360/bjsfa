@@ -4,7 +4,10 @@
       <div slot="r"></div>
     </TopHeader>
     <div class="shopmap">
-      <img src="../assets/map.png" alt="">
+      <img
+        src="../assets/map.png"
+        alt=""
+      >
     </div>
   </div>
 </template>
