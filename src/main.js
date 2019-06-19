@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import "./lib/hotcss/hotcss.js";
 import VeeValidate from "vee-validate";
+
 import helper from "./lib/helper";
 
 Vue.config.productionTip = false;
