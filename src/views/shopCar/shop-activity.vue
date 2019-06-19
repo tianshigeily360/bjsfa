@@ -25,9 +25,18 @@
             </div>
             <div class="thrRight">68%</div>
           </div>
-          <mt-progress :value="20" :bar-height="5"></mt-progress>
+          <mt-progress :value="20" :bar-height="15"></mt-progress>
         </div>
       </div>
+    </div>
+    <div class="bottom">
+      <div class="bottom-top">用户拜访备注:</div>
+      <textarea placeholder="点击填写拜访备注"></textarea>
+    </div>
+
+    <div class="btnBottom">
+      <div class="sitDown">下单</div>
+      <div class="btnDao">商店签到</div>
     </div>
   </div>
 </template>
@@ -71,12 +80,36 @@ export default {
     border-bottom: 1px solid #d3caca;
     height: px2rem(140);
     .thr-top {
-      height: 100%;
+      height: px2rem(100);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 px2rem(24) 0 px2rem(24);
     }
   }
+}
+.mt-progress {
+  margin: 0 26px 0 26px;
+}
+.bottom {
+  height: px2rem(270);
+  // border-bottom: 1px solid #d3caca;
+  .bottom-top {
+    height: px2rem(65);
+    line-height: px2rem(65);
+    border-bottom: 1px solid #d3caca;
+    padding: 0 px2rem(24) 0 px2rem(24);
+  }
+  textarea {
+    border: none;
+    border-bottom: 1px solid #d3caca;
+    height: px2rem(205);
+    width: px2rem(725);
+    padding:px2rem(14) 0 0 px2rem(24);
+    font-size: px2rem(25);
+  }
+}
+.btnBottom{
+  margin-top: px2rem(170);
 }
 </style>
