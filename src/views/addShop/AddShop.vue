@@ -4,65 +4,66 @@
       <div slot="r"></div>
     </TopHeader>
     <div class="shopmap">
-      <img
-        src="../assets/map.png"
-        alt=""
-      >
+      <img src="../../assets/map.png" alt="" />
     </div>
     <div class="address">
-      <p class="firstwo">地址: 头像北京北京市海淀区西三旗黑泉区8号 三旗黑
-      </p>
-      <p class="secendt"> 泉路8号宝胜广场c南南宝领地啥养公司</p>
+      <p class="firstwo">地址: 头像北京北京市海淀区西三旗黑泉区8号 三旗黑</p>
+      <p class="secendt">泉路8号宝胜广场c南南宝领地啥养公司</p>
       <i class="icon iconfont icon-shuaxin"></i>
     </div>
     <div class="listshop">
       <mt-field
-        label="用户名"
-        placeholder="请输入用户名"
+        type="name"
+        label="商品名称"
+        state="error"
+        placeholder="请填写商品名称"
         v-model="username"
       ></mt-field>
       <mt-field
-        label="邮箱"
-        placeholder="请输入邮箱"
+        label="商店面积"
+        placeholder="请填写商店面积"
+        state="error"
         type="email"
         v-model="email"
       ></mt-field>
       <mt-field
-        label="密码"
-        placeholder="请输入密码"
+        label="所属渠道"
+        placeholder="点击选择"
         type="password"
         v-model="password"
       ></mt-field>
       <mt-field
-        label="手机号"
-        placeholder="请输入手机号"
+        label="商店类型"
+        placeholder="点击选择"
         type="tel"
         v-model="phone"
       ></mt-field>
       <mt-field
-        label="网站"
-        placeholder="请输入网址"
+        label="商店地址"
+        placeholder="请填写商店地址"
         type="url"
         v-model="website"
       ></mt-field>
       <mt-field
-        label="数字"
-        placeholder="请输入数字"
+        label="商店负责人"
+        placeholder="请填写相关负责人"
         type="number"
         v-model="number"
       ></mt-field>
       <mt-field
-        label="生日"
-        placeholder="请输入生日"
+        label="商店电话"
+        placeholder="请填写联系电话"
+        :state="NameStatus"
         type="date"
         v-model="birthday"
       ></mt-field>
       <mt-field
-        label="自我介绍"
+        label="拍摄门头照"
         placeholder="自我介绍"
         type="textarea"
         rows="4"
         v-modal="introduction"
+        @blur.native.capture="checkInputName"
       ></mt-field>
     </div>
     <mt-button type="danger">danger</mt-button>
@@ -70,10 +71,9 @@
 </template>
 
 <script>
-
-import TopHeader from '../components/TopHeader';
+import TopHeader from "../../components/TopHeader";
 export default {
-  name: 'AddShop',
+  name: "AddShop",
   data() {
     return {
       username: "",
@@ -87,8 +87,7 @@ export default {
     };
   },
   components: {
-    TopHeader,
-
+    TopHeader
   }
 };
 </script>
