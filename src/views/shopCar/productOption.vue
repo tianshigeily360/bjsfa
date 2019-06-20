@@ -78,7 +78,7 @@ export default {
   },
   created() {
     server
-      .getOrderList({
+      .getProOrderList({
         id: 1
       })
       .then(res => {
