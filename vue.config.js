@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       "^/bj": {
-        target: "http://192.168.0.126:7777/",
+        target: "http://192.168.0.119:8848/",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
