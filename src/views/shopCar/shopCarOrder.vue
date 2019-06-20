@@ -6,8 +6,8 @@
     <!-- 搜索区域 -->
     <div class="search clearfix">
       <div class="inputBox clearfix">
-        <input type="text" placeholder="点击进行搜索～" />
-        <div class="icon iconfont icon-xiazai17"></div>
+        <input v-model="searchValue" type="text" placeholder="点击进行搜索～" />
+        <div @click="searchVal" class="icon iconfont icon-xiazai17"></div>
       </div>
       <div class="rwm">
         <div class="icon iconfont icon-im_erweimasaomiao"></div>
@@ -29,7 +29,7 @@
     <!-- 中间 count -->
     <div class="middle">
       <div class="count-box">
-        <div class="count">1670/3590</div>
+        <div class="count">{{ orderListArr.length }}/3590</div>
         <div class="category">洗护 / 食品 / 宝洁</div>
       </div>
       <div class="icon iconfont icon-shaixuan"></div>
@@ -68,12 +68,28 @@ export default {
   data() {
     return {
       orderMenuArr: [],
-      orderListArr: []
+      orderListArr: [],
+      searchValue: ""
     };
   },
   methods: {
+    searchVal() {
+      api.getOrderListTitle({ title: this.searchValue }).then(res => {
+        this.orderListArr = res.data;
+      });
+    },
     openList(id) {
-      api.getOrderList({ menuId: id }).then(res => {});
+      if (id == 2) {
+        api.getOrderListAll().then(res => {
+          this.orderListArr = res.data;
+        });
+      } else {
+        api.getOrderList({ menuId: id }).then(res => {
+          console.log(id);
+          console.log(res.data);
+          this.orderListArr = res.data;
+        });
+      }
     }
   },
   components: {
@@ -81,14 +97,10 @@ export default {
   },
   created() {
     api.getOrderMenu().then(res => {
-      res.data.forEach(item => {
-        this.orderMenuArr.push(item);
-      });
+      this.orderMenuArr = res.data;
     });
     api.getOrderListAll().then(res => {
-      res.data.forEach(item => {
-        this.orderListArr.push(item);
-      });
+      this.orderListArr = res.data;
     });
     api.getOrderList({ menuId: 1 }).then(res => {
       console.log(res.data);

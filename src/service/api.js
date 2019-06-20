@@ -13,7 +13,11 @@ export default {
   },
   // 下单页商品内容(过滤 menuId)
   getOrderList(params) {
-    return axios.get("/bj/orderList", params.menuId);
+    return axios.get(`/bj/orderList?menuId=${params.menuId}`);
+  },
+  // 下单页商品内容查询(过滤 title)
+  getOrderListTitle(params) {
+    return axios.get(`/bj/orderList?title_like=${params.title}`);
   }
   // #endregion
 };
