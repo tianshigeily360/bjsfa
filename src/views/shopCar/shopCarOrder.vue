@@ -23,9 +23,15 @@
     </div>
     <!-- 中间 count -->
     <div class="middle">
-      <div class="count">1670/3590</div>
-      <div class="category">洗护 / 食品 / 宝洁</div>
+      <div class="count-box">
+        <div class="count">1670/3590</div>
+        <div class="category">洗护 / 食品 / 宝洁</div>
+      </div>
       <div class="icon iconfont icon-shaixuan"></div>
+    </div>
+    <!-- 商品区域 -->
+    <div class="goods-list">
+      <div class="goods-item"></div>
     </div>
   </div>
 </template>
@@ -116,9 +122,26 @@ export default {
   }
 }
 // 中间 count
-.maddle {
+.middle {
+  position: relative;
+  .count-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: px2rem(26);
+    margin-right: px2rem(100);
+    margin-left: px2rem(20);
+    color: #8f8f8f;
+    height: px2rem(88);
+    line-height: px2rem(88);
+    border-bottom: 1px solid #808080;
+  }
   .icon {
-    font-size: px2rem(60);
+    font-size: px2rem(36);
+    margin-right: px2rem(28);
+    font-weight: 700;
+    position: absolute;
+    right: 0;
+    top: px2rem(28);
   }
 }
 </style>
