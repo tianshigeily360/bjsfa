@@ -1,8 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import AddShop from "./views/AddShop.vue";
+import AddShop from "./views/addShop/AddShop.vue";
 import ShopSignIn from "./views/orders/ShopSignIn.vue";
+import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -21,6 +23,11 @@ export default new Router({
       path: "/addshop",
       name: "addshop",
       component: AddShop
+    },
+    {
+      path: "/shopcarorder",
+      name: "shopCarOrder",
+      component: shopCarOrder
     },
     {
       path: "/about",
