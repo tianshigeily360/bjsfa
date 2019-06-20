@@ -29,7 +29,9 @@
     <!-- 中间 count -->
     <div class="middle">
       <div class="count-box">
-        <div class="count">{{ orderListArr.length }}/3590</div>
+        <div class="count">
+          {{ orderListArr.length }}/{{ orderListAllArr.length }}
+        </div>
         <div class="category">洗护 / 食品 / 宝洁</div>
       </div>
       <div class="icon iconfont icon-shaixuan"></div>
@@ -68,6 +70,7 @@ export default {
   data() {
     return {
       orderMenuArr: [],
+      orderListAllArr: [],
       orderListArr: [],
       searchValue: ""
     };
@@ -100,6 +103,7 @@ export default {
       this.orderMenuArr = res.data;
     });
     api.getOrderListAll().then(res => {
+      this.orderListAllArr = res.data;
       this.orderListArr = res.data;
     });
     api.getOrderList({ menuId: 1 }).then(res => {
