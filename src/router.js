@@ -15,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/productOption",
+      path: "/productOption", //产品选择路由
       name: "productOption",
       component: productOption
     },
@@ -25,7 +25,7 @@ export default new Router({
       component: AddShop
     },
     {
-      path: "/activity",
+      path: "/activity", //店内活动路由
       name: "activity",
       component: Activity
     },

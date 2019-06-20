@@ -7,15 +7,15 @@
     </div>
     <div class="menu-top">
       <div class="menuLeft">
-        <img src alt>
+        <img :src="proData.img" alt="">
       </div>
       <div class="menuRight">
-        <p class="first">时间发货给</p>
-        <span class="three">编码: 892723</span>
-        <span>规格: 12盒/箱</span>
+        <p class="first">{{proData.title}}</p>
+        <span class="three">编码: {{proData.serial}}</span>
+        <span>规格: {{proData.number}}盒/箱</span>
         <p class="second">
           价格:
-          <span>78.00</span>
+          <span>{{proData.monery}}</span>
         </p>
       </div>
     </div>
@@ -30,27 +30,61 @@
       </div>
       <div class="menuCen">
         <p>库存</p>
-        <p>2345</p>
+        <p>{{proData.repertory}}</p>
       </div>
       <div class="menuCen">
         <p>数量</p>
-        <p>
-          <i class="icon iconfont icon-jian"></i>
-          <i class="icon iconfont icon-jia"></i>
-          <i></i>
+        <p class="hiden">
+          <i @click="proDataJia(1)" class="icon iconfont icon-jian"></i>
+          <span>{{numData}}</span>
+          <i @click="proDataJian" class="icon iconfont icon-jia"></i>
         </p>
       </div>
+    </div>
+
+    <div class="menu-bottom">
+      <div class="left btn">取消</div>
+      <div class="right btn">加入购物车</div>
     </div>
   </div>
 </template>
 
 <script>
 import topHeard from "../../components/TopHeader";
+import server from "../../service/api";
 export default {
   name: "product",
-  data() {},
+  data() {
+    return {
+      proData:"",
+      numData:1
+    };
+  },
   components: {
     topHeard
+  },
+  methods: {
+    //点击数量增加
+    proDataJia(i) {
+      console.log(i);
+      if (this.numData > i) {
+        this.numData--;
+      }
+    },
+    //点击数量减少
+    proDataJian() {
+      this.numData++;
+    }
+  },
+  created() {
+    server
+      .getOrderList({
+        id: 1
+      })
+      .then(res => {
+        this.proData = res.data;
+        console.log(this.proData);
+      });
   }
 };
 </script>
@@ -63,7 +97,7 @@ export default {
     display: flex;
     // justify-content: space-between;
     align-items: center;
-    padding: 0 px2rem(28) 0 px2rem(28);
+    padding: 0 px2rem(28);
     .menuLeft {
       width: px2rem(124);
       height: px2rem(124);
@@ -105,10 +139,48 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 px2rem(28) 0 px2rem(28);
-      .iconfont{
-          font-size: px2rem(46);
+      padding: 0 px2rem(28);
+      .iconfont {
+        font-size: px2rem(46);
       }
+      .hiden {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      span {
+        width: px2rem(80);
+        height: px2rem(40);
+        border: 3px solid #000;
+        display: inline-block;
+        text-align: center;
+        border-radius: 10px;
+        line-height: px2rem(40);
+        margin: 0 px2rem(10);
+      }
+    }
+  }
+  .menu-bottom {
+    width: 100%;
+    height: px2rem(110);
+    border-top: 1px solid #d3caca;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .left {
+      border-right: 1px solid #d3caca;
+      color: red;
+    }
+    .btn {
+      height: px2rem(110);
+      line-height: px2rem(110);
+      width: px2rem(375);
+      text-align: center;
+    }
+    .right {
+      color: green;
     }
   }
 }

@@ -35,9 +35,12 @@
     </div>
 
     <div class="btnBottom">
-      <div class="sitDown">下单</div>
+      <router-link to="/shopcarorder">
+        <div class="sitDown">下单</div>
+      </router-link>
       <div class="sitDown">商店签到</div>
     </div>
+    <router-view/>
   </div>
 </template>
 
