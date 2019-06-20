@@ -7,7 +7,7 @@
     </div>
     <div class="menu-top">
       <div class="menuLeft">
-        <img :src="proData.img" alt="">
+        <img :src="proData.img" alt>
       </div>
       <div class="menuRight">
         <p class="first">{{proData.title}}</p>
@@ -52,12 +52,14 @@
 <script>
 import topHeard from "../../components/TopHeader";
 import server from "../../service/api";
+import eventbus from "../../eventbus";
 export default {
   name: "product",
   data() {
     return {
-      proData:"",
-      numData:1
+      proData: "",
+      numData: 1,
+      getDataid: ""
     };
   },
   components: {
@@ -77,14 +79,10 @@ export default {
     }
   },
   created() {
-    server
-      .getProOrderList({
-        id: 1
-      })
-      .then(res => {
-        this.proData = res.data;
-        console.log(this.proData);
-      });
+    console.log(this.$route.params.id);
+    this.proData = this.$store.state.productList.find(
+      item => item.id == this.$route.params.id
+    );
   }
 };
 </script>

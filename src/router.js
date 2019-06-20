@@ -15,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/productOption", //产品选择路由
+      path: "/productOption/:id", //产品选择路由
       name: "productOption",
       component: productOption
     },
