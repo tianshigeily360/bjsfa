@@ -3,7 +3,8 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
-
+import Activity from "./views/shopCar/shop-activity";
+import productOption from "./views/shopCar/productOption";
 Vue.use(Router);
 
 export default new Router({
@@ -14,9 +15,19 @@ export default new Router({
       component: Home
     },
     {
+      path: "/productOption/:id", //产品选择路由
+      name: "productOption",
+      component: productOption
+    },
+    {
       path: "/addshop",
       name: "addshop",
       component: AddShop
+    },
+    {
+      path: "/activity", //店内活动路由
+      name: "activity",
+      component: Activity
     },
     {
       path: "/shopcarorder",
