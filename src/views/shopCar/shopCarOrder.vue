@@ -6,7 +6,7 @@
     <!-- 搜索区域 -->
     <div class="search clearfix">
       <div class="inputBox clearfix">
-        <input type="text" placeholder="点击进行搜索" />
+        <input type="text" placeholder="点击进行搜索～" />
         <div class="icon iconfont icon-xiazai17"></div>
       </div>
       <div class="rwm">
@@ -17,9 +17,15 @@
     <div class="tab">
       <ul>
         <li class="tabItem" v-for="item in orderMenuList" :key="item.id">
-          {{ item.menuName }}
+          <a href="javascript:0">{{ item.menuName }}</a>
         </li>
       </ul>
+    </div>
+    <!-- 中间 count -->
+    <div class="middle">
+      <div class="count">1670/3590</div>
+      <div class="category">洗护 / 食品 / 宝洁</div>
+      <div class="icon iconfont icon-shaixuan"></div>
     </div>
   </div>
 </template>
@@ -49,6 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// 搜索
 .search {
   height: px2rem(104);
   .inputBox {
@@ -57,6 +64,7 @@ export default {
     float: left;
     width: 80%;
     position: relative;
+    border-right: 1px solid #808080;
     input,
     .icon {
       font-size: px2rem(24);
@@ -80,6 +88,7 @@ export default {
     }
   }
 }
+// tab页签
 .tab {
   border-top: 1px solid #808080;
   border-bottom: 1px solid #808080;
@@ -98,7 +107,18 @@ export default {
       &:last-child {
         border-right: none;
       }
+      a {
+        &:focus {
+          color: #04afe8;
+        }
+      }
     }
+  }
+}
+// 中间 count
+.maddle {
+  .icon {
+    font-size: px2rem(60);
   }
 }
 </style>
