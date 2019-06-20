@@ -16,7 +16,12 @@
     <!-- tab 标签切换 -->
     <div class="tab">
       <ul>
-        <li class="tabItem" v-for="item in orderMenuList" :key="item.id">
+        <li
+          @click="openList(item.id)"
+          class="tabItem"
+          v-for="item in orderMenuArr"
+          :key="item.id"
+        >
           <a href="javascript:0">{{ item.menuName }}</a>
         </li>
       </ul>
@@ -30,9 +35,27 @@
       <div class="icon iconfont icon-shaixuan"></div>
     </div>
     <!-- 商品区域 -->
-    <div class="goods-list">
-      <div class="goods-item"></div>
-    </div>
+    <ul class="goods-list">
+      <li v-for="item in orderListArr" :key="item.id" class="goods-item">
+        <img :src="item.img" :alt="item.title" />
+        <div class="goods-item-content">
+          <h3>{{ item.title }}</h3>
+          <div class="content-code">
+            <span>编码: {{ item.serial }}</span>
+            <span>规格: {{ item.number }}盒/箱</span>
+          </div>
+          <div class="content-price">
+            <div class="price-num">
+              价格: <span class="price-color">{{ item.monery }}</span>
+            </div>
+            <div class="reper-num">
+              <span>库存: {{ item.repertory }}箱</span>
+              <span class="icon iconfont icon-shuaxin"></span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -44,8 +67,14 @@ export default {
   name: "order",
   data() {
     return {
-      orderMenuList: []
+      orderMenuArr: [],
+      orderListArr: []
     };
+  },
+  methods: {
+    openList(id) {
+      api.getOrderList({ menuId: id }).then(res => {});
+    }
   },
   components: {
     topheader
@@ -53,8 +82,16 @@ export default {
   created() {
     api.getOrderMenu().then(res => {
       res.data.forEach(item => {
-        this.orderMenuList.push(item);
+        this.orderMenuArr.push(item);
       });
+    });
+    api.getOrderListAll().then(res => {
+      res.data.forEach(item => {
+        this.orderListArr.push(item);
+      });
+    });
+    api.getOrderList({ menuId: 1 }).then(res => {
+      console.log(res.data);
     });
   }
 };
@@ -142,6 +179,60 @@ export default {
     position: absolute;
     right: 0;
     top: px2rem(28);
+  }
+}
+// 商品区域
+.goods-list {
+  .goods-item {
+    height: px2rem(166);
+    // line-height: px2rem(166);
+    margin-left: px2rem(28);
+    padding-right: px2rem(28);
+    border-bottom: 1px solid #808080;
+    box-sizing: border-box;
+    padding-top: px2rem(15);
+    img {
+      width: px2rem(124);
+      height: px2rem(124);
+      float: left;
+    }
+    .goods-item-content {
+      margin-left: px2rem(152);
+      h3 {
+        font-size: px2rem(28);
+      }
+      .content-code {
+        padding-top: px2rem(5);
+        padding-bottom: px2rem(28);
+        font-size: $text-size-small;
+        color: $text-color;
+        span {
+          &:first-child {
+            margin-right: px2rem(54);
+          }
+        }
+      }
+      .content-price {
+        font-size: $text-size-small;
+        color: $text-color;
+        display: flex;
+        justify-content: space-between;
+        .price-num {
+          .price-color {
+            font-size: px2rem(30);
+            color: #ff0000;
+          }
+        }
+        .reper-num {
+          .icon {
+            font-size: px2rem(34);
+            color: #000;
+            font-weight: 700;
+            margin-left: px2rem(26);
+          }
+        }
+      }
+    }
   }
 }
 </style>
