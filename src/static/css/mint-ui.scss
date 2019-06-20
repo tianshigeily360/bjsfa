@@ -1,0 +1,7 @@
+@import "../../lib/hotcss/px2rem.scss";
+.mint-cell-wrapper {
+  font-size: px2rem(20);
+  .mint-field-core {
+    font-size: px2rem(10);
+  }
+}

@@ -7,6 +7,10 @@
 // import { Indicator, Toast } from "mint-ui";
 // import "../assets/font/iconfont.css";
 // import services from "../service/api";
+import { mapMutations } from "vuex";
+// import { Indicator, Toast, Field } from "mint-ui";
+import "../assets/font/iconfont.css";
+import services from "../service/api";
 export default {
   name: "login",
   data() {
