@@ -6,11 +6,13 @@ import Visit from "./views/training/Visit"; //(牛)
 import Train from "./views/training/Train"; // (牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
+import commitOrder from "./views/shopCar/commitOrder.vue";
 import ShopSignIn from "./views/orders/ShopSignIn.vue";
 
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
 import shoppingtrolley from "./views/shopCar/shoppingTrolley";
+
 Vue.use(Router);
 
 export default new Router({
@@ -56,9 +58,14 @@ export default new Router({
       component: Activity
     },
     {
-      path: "/shopcarorder",
+      path: "/shopcarorder", // 店铺下单路由
       name: "shopCarOrder",
       component: shopCarOrder
+    },
+    {
+      path: "/commitorder", // 提交订单路由
+      name: "commitOrder",
+      component: commitOrder
     },
     {
       path: "/about",
