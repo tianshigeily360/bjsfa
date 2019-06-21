@@ -1,8 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
+import ShopSignIn from "./views/orders/ShopSignIn.vue";
+import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
+
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
 Vue.use(Router);
@@ -13,6 +15,11 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path: "/ShopSignIn",
+      name: "ShopSignIn",
+      component: ShopSignIn
     },
     {
       path: "/productOption/:id", //产品选择路由
