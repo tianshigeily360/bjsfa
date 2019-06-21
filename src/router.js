@@ -11,6 +11,7 @@ import ShopSignIn from "./views/orders/ShopSignIn.vue";
 
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
+import shoppingtrolley from "./views/shopCar/shoppingTrolley";
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ export default new Router({
       path: "/productOption/:id", //产品选择路由
       name: "productOption",
       component: productOption
+    },
+    {
+      path: "/shoppingtrolley", //购物车路由
+      name: "shoppingtrolley",
+      component: shoppingtrolley
     },
     {
       path: "/addshop",

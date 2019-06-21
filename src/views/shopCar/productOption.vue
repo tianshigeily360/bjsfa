@@ -24,8 +24,8 @@
       <div class="menuCen">
         <p>仓库</p>
         <p>
-          乌鲁木齐仓库
-          <img src="../../assets/activityImg/小于号.png" alt />
+          {{actName.ditch}}
+          <img src="../../assets/activityImg/小于号.png" alt>
         </p>
       </div>
       <div class="menuCen">
@@ -43,8 +43,8 @@
     </div>
 
     <div class="menu-bottom">
-      <div class="left btn">取消</div>
-      <div class="right btn">加入购物车</div>
+      <div class="left btn" @click="goBack">取消</div>
+      <div class="right btn" @click="goShopCar">加入购物车</div>
     </div>
   </div>
 </template>
@@ -58,13 +58,16 @@ export default {
     return {
       proData: "",
       numData: 1,
-      getDataid: ""
+      actName:""
     };
   },
   components: {
     topHeard
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     //点击数量增加
     proDataJia(i) {
       console.log(i);
@@ -75,12 +78,25 @@ export default {
     //点击数量减少
     proDataJian() {
       this.numData++;
+    },
+    //跳转到购物车
+    goShopCar() {
+      this.$store.commit("initshopCarData", {
+        item: this.proData,
+        num: this.numData
+      });
+      this.$router.go(-1);
     }
   },
   created() {
     this.proData = this.$store.state.productList.find(
       item => item.id == this.$route.params.id
     );
+    //拿到对应仓库
+    this.actName = this.$store.state.VisitList.find(
+      item => item.id == this.$store.state.getShopData.id
+    );
+    // console.log(this.proData);
   }
 };
 </script>
