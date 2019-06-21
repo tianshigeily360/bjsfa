@@ -24,6 +24,7 @@ export default {
   trainmaterials() {
     return axios.get("/bj/trainingImg");
   },
+
   //店内活动接口
   getActivity() {
     return axios.get("/bj/activity");
