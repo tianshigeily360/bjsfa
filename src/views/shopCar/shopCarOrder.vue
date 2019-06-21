@@ -38,25 +38,32 @@
     </div>
     <!-- 商品区域 -->
     <ul class="goods-list">
-      <li v-for="item in orderListArr" :key="item.id" class="goods-item">
-        <img :src="item.img" :alt="item.title" />
-        <div class="goods-item-content">
-          <h3>{{ item.title }}</h3>
-          <div class="content-code">
-            <span>编码: {{ item.serial }}</span>
-            <span>规格: {{ item.number }}盒/箱</span>
-          </div>
-          <div class="content-price">
-            <div class="price-num">
-              价格: <span class="price-color">{{ item.monery }}</span>
+      <router-link
+        v-for="item in orderListArr"
+        :key="item.id"
+        :to="'/productoption/' + item.id"
+      >
+        <li @click="openProduct(item)" class="goods-item">
+          <img :src="item.img" :alt="item.title" />
+          <div class="goods-item-content">
+            <h3>{{ item.title }}</h3>
+            <div class="content-code">
+              <span>编码: {{ item.serial }}</span>
+              <span>规格: {{ item.number }}盒/箱</span>
             </div>
-            <div class="reper-num">
-              <span>库存: {{ item.repertory }}箱</span>
-              <span class="icon iconfont icon-shuaxin"></span>
+            <div class="content-price">
+              <div class="price-num">
+                价格:
+                <span class="price-color">{{ item.monery }}</span>
+              </div>
+              <div class="reper-num">
+                <span>库存: {{ item.repertory }}箱</span>
+                <span class="icon iconfont icon-shuaxin"></span>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -64,7 +71,6 @@
 <script>
 import topheader from "../../components/TopHeader";
 import api from "../../service/api";
-
 export default {
   name: "order",
   data() {
@@ -105,9 +111,7 @@ export default {
     api.getOrderListAll().then(res => {
       this.orderListAllArr = res.data;
       this.orderListArr = res.data;
-    });
-    api.getOrderList({ menuId: 1 }).then(res => {
-      console.log(res.data);
+      this.$store.commit("initProdcutList", res.data);
     });
   }
 };
