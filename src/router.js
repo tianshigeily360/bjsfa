@@ -6,7 +6,10 @@ import Visit from "./views/training/Visit"; //(牛)
 import Train from "./views/training/Train"; // (牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
+import ShopSignIn from "./views/orders/ShopSignIn.vue";
 
+import Activity from "./views/shopCar/shop-activity";
+import productOption from "./views/shopCar/productOption";
 Vue.use(Router);
 
 export default new Router({
@@ -15,6 +18,16 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path: "/ShopSignIn",
+      name: "ShopSignIn",
+      component: ShopSignIn
+    },
+    {
+      path: "/productOption/:id", //产品选择路由
+      name: "productOption",
+      component: productOption
     },
     {
       path: "/addshop",
@@ -30,6 +43,11 @@ export default new Router({
       path: "/Train", // 培训资料 (牛)
       name: "Train",
       component: Train
+    },
+    {
+      path: "/activity", //店内活动路由
+      name: "activity",
+      component: Activity
     },
     {
       path: "/shopcarorder",
