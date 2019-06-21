@@ -43,7 +43,7 @@
     </div>
 
     <div class="menu-bottom">
-      <div class="left btn">取消</div>
+      <div class="left btn" @click="goBack">取消</div>
       <div class="right btn">加入购物车</div>
     </div>
   </div>
@@ -59,13 +59,15 @@ export default {
     return {
       proData: "",
       numData: 1,
-      getDataid: ""
     };
   },
   components: {
     topHeard
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     //点击数量增加
     proDataJia(i) {
       console.log(i);

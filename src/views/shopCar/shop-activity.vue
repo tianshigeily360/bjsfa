@@ -35,12 +35,9 @@
     </div>
 
     <div class="btnBottom">
-      <router-link to="/shopcarorder">
-        <div class="sitDown">下单</div>
-      </router-link>
+      <div class="sitDown" @click="toOrder">下单</div>
       <div class="sitDown">商店签到</div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -57,7 +54,11 @@ export default {
   components: {
     topHead
   },
-  methods: {},
+  methods: {
+    toOrder() {
+      this.$router.push("/shopcarorder");
+    }
+  },
   created() {
     server.getActivity().then(res => {
       res.data.forEach(item => {
