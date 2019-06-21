@@ -5,7 +5,7 @@
     </div>
     <div class="th-title">{{ title }}</div>
     <div class="th-r">
-      <slot name="r">右侧插槽</slot>
+      <slot name="r"></slot>
     </div>
   </div>
 </template>

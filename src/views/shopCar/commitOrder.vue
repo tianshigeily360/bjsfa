@@ -91,14 +91,15 @@ export default {
   }
 }
 .orders {
+  border-bottom: 1px solid #808080;
   .order-item {
-    height: px2rem(166);
+    height: px2rem(180);
     // line-height: px2rem(166);
     margin-left: px2rem(28);
     padding-right: px2rem(28);
     border-bottom: 1px solid #808080;
     box-sizing: border-box;
-    padding-top: px2rem(15);
+    padding-top: px2rem(20);
     img {
       width: px2rem(124);
       height: px2rem(124);
@@ -141,6 +142,11 @@ export default {
         }
       }
     }
+  }
+  p {
+    height: px2rem(80);
+    line-height: px2rem(80);
+    margin-left: px2rem(28);
   }
 }
 </style>

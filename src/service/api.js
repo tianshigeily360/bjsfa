@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+  // # region店内活动
   getsth() {
     axios.get();
   },
@@ -10,6 +11,14 @@ export default {
   // 下单页tab标签
   getOrderMenu() {
     return axios.get("/bj/orderMenu");
+  },
+  visitShop() {
+    //进店拜访
+    return axios.get("bj/visitIn");
+  },
+  // 查询超市
+  visitShopSearch(params) {
+    return axios.get(`bj/visitIn?name_like=${params.name}`);
   },
   //店内活动接口
   getActivity() {

@@ -52,7 +52,6 @@
 <script>
 import topHeard from "../../components/TopHeader";
 import server from "../../service/api";
-import eventbus from "../../eventbus";
 export default {
   name: "product",
   data() {

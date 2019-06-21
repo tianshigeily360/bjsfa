@@ -17,12 +17,15 @@
     <div class="tab">
       <ul>
         <li
+          ref="focused"
           @click="openList(item.id)"
           class="tabItem"
           v-for="item in orderMenuArr"
           :key="item.id"
         >
-          <a href="javascript:0">{{ item.menuName }}</a>
+          <a :class="{ active: item.id == index }" href="javascript:0">
+            {{ item.menuName }}
+          </a>
         </li>
       </ul>
     </div>
@@ -43,7 +46,7 @@
         :key="item.id"
         :to="'/productoption/' + item.id"
       >
-        <li @click="openProduct(item)" class="goods-item">
+        <li class="goods-item">
           <img :src="item.img" :alt="item.title" />
           <div class="goods-item-content">
             <h3>{{ item.title }}</h3>
@@ -78,7 +81,8 @@ export default {
       orderMenuArr: [],
       orderListAllArr: [],
       orderListArr: [],
-      searchValue: ""
+      searchValue: "",
+      index: 2
     };
   },
   methods: {
@@ -94,12 +98,21 @@ export default {
         });
       } else {
         api.getOrderList({ menuId: id }).then(res => {
-          console.log(id);
-          console.log(res.data);
           this.orderListArr = res.data;
         });
       }
+      this.index = id;
     }
+    // isFocus() {
+    //   this.orderMenuArr.forEach(item => {
+    //     if (item.id == this.index) {
+    //       this.$nextTick(() => {
+    //         console.log(this.$refs.focused);
+    //         // this.$refs.focused.focus();
+    //       });
+    //     }
+    //   });
+    // }
   },
   components: {
     topheader
@@ -110,9 +123,9 @@ export default {
     });
     api.getOrderListAll().then(res => {
       this.orderListAllArr = res.data;
-      this.orderListArr = res.data;
       this.$store.commit("initProdcutList", res.data);
     });
+    this.openList(2);
   }
 };
 </script>
@@ -128,19 +141,17 @@ export default {
     width: 80%;
     position: relative;
     border-right: 1px solid #808080;
-    input,
-    .icon {
-      font-size: px2rem(24);
-    }
     input {
+      font-size: px2rem(24);
       border: none;
-      margin-left: px2rem(28);
+      margin-left: px2rem(35);
     }
     .icon {
+      font-size: px2rem(30);
       position: absolute;
       font-weight: 700;
       left: 0;
-      top: px2rem(23);
+      top: px2rem(5);
     }
   }
   .rwm {
@@ -170,14 +181,10 @@ export default {
       &:last-child {
         border-right: none;
       }
-      a {
-        &:focus {
-          color: #04afe8;
-        }
-      }
     }
   }
 }
+
 // 中间 count
 .middle {
   position: relative;
@@ -254,5 +261,9 @@ export default {
       }
     }
   }
+}
+
+.active {
+  color: #04afe8;
 }
 </style>
