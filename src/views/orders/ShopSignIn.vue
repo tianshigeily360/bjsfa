@@ -92,7 +92,7 @@ export default {
     width: px2rem(220);
     height: px2rem(220);
     border: 2px solid #dddddd;
-    margin: px2rem(13);
+    margin: px2rem(10);
     float: left;
     // position: relative;
     .icon-camera {
