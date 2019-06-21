@@ -27,6 +27,14 @@ module.exports = {
         pathRewrite: {
           "^/bj": "/bj" // rewrite path
         }
+      },
+      "^/server": {
+        target: "http://192.168.0.119:8848/",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/server": "/server" // rewrite path
+        }
       }
     }
   }

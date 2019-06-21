@@ -78,7 +78,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params.id);
     this.proData = this.$store.state.productList.find(
       item => item.id == this.$route.params.id
     );
