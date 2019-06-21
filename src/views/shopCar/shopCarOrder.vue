@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <topheader title="下单">
-      <div slot="r" class="icon iconfont icon-tubiaolunkuo-"></div>
+      <div @click="goShopCar" slot="r" class="icon iconfont icon-tubiaolunkuo-"></div>
     </topheader>
     <!-- 搜索区域 -->
     <div class="search clearfix">
@@ -31,13 +31,8 @@
     </div>
     <!-- 商品区域 -->
     <ul class="goods-list">
-      <router-link v-for="item in orderListArr"
-          :key="item.id" :to="'/productoption/'+item.id">
-        <li
-          
-          @click="openProduct(item)"
-          class="goods-item"
-        >
+      <router-link v-for="item in orderListArr" :key="item.id" :to="'/productoption/'+item.id">
+        <li class="goods-item">
           <img :src="item.img" :alt="item.title">
           <div class="goods-item-content">
             <h3>{{ item.title }}</h3>
@@ -80,6 +75,9 @@ export default {
       api.getOrderListTitle({ title: this.searchValue }).then(res => {
         this.orderListArr = res.data;
       });
+    },
+    goShopCar() {
+      this.$router.push("/shoppingtrolley");
     },
     openList(id) {
       if (id == 2) {
