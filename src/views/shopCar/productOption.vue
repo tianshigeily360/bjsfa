@@ -7,15 +7,15 @@
     </div>
     <div class="menu-top">
       <div class="menuLeft">
-        <img :src="proData.img" alt>
+        <img :src="proData.img" alt />
       </div>
       <div class="menuRight">
-        <p class="first">{{proData.title}}</p>
-        <span class="three">编码: {{proData.serial}}</span>
-        <span>规格: {{proData.number}}盒/箱</span>
+        <p class="first">{{ proData.title }}</p>
+        <span class="three">编码: {{ proData.serial }}</span>
+        <span>规格: {{ proData.number }}盒/箱</span>
         <p class="second">
           价格:
-          <span>{{proData.monery}}</span>
+          <span>{{ proData.monery }}</span>
         </p>
       </div>
     </div>
@@ -25,18 +25,18 @@
         <p>仓库</p>
         <p>
           乌鲁木齐仓库
-          <img src="../../assets/activityImg/小于号.png" alt>
+          <img src="../../assets/activityImg/小于号.png" alt />
         </p>
       </div>
       <div class="menuCen">
         <p>库存</p>
-        <p>{{proData.repertory}}</p>
+        <p>{{ proData.repertory }}</p>
       </div>
       <div class="menuCen">
         <p>数量</p>
         <p class="hiden">
           <i @click="proDataJia(1)" class="icon iconfont icon-jian"></i>
-          <span>{{numData}}</span>
+          <span>{{ numData }}</span>
           <i @click="proDataJian" class="icon iconfont icon-jia"></i>
         </p>
       </div>

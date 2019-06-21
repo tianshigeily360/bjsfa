@@ -12,13 +12,17 @@ export default {
   getOrderMenu() {
     return axios.get("/bj/orderMenu");
   },
+  //进店拜访(牛)
   visitShop() {
-    //进店拜访
     return axios.get("bj/visitIn");
   },
-  // 查询超市
+  // 查询超市(牛)
   visitShopSearch(params) {
     return axios.get(`bj/visitIn?name_like=${params.name}`);
+  },
+  // 培训资料(牛)
+  trainmaterials() {
+    return axios.get("/bj/trainingImg");
   },
   //店内活动接口
   getActivity() {

@@ -1,12 +1,16 @@
 <template>
   <div class="img-text">
     <!-- 护舒宝详情部分 v-for="item in babyList" :key="item.id -->
-    <div class="baby-recycle">
-      <div class="baby-img"></div>
+    <div class="baby-recycle" v-for="item in imgText" :key="item.id">
+      <div class="baby-img-wrap">
+        <div class="baby-img">
+          <img :src="item.img" alt />
+        </div>
+      </div>
       <div class="baby-intro">
-        <div class="baby-title">护舒宝轻柔纯棉超薄型超薄</div>
+        <div class="baby-title">{{ item.title }}</div>
         <div class="baby-para">
-          地方的开关机奥斯卡机电公司就看见安静的房间爱大家啊按揭贷款噶佳都科技阿卡得更加快乐见到过拉科技馆卡机的
+          {{ item.text }}
         </div>
       </div>
     </div>
@@ -14,12 +18,59 @@
 </template>
 
 <script>
+import api from "../../service/api";
 export default {
   name: "img-text",
   data() {
-    return {};
+    return {
+      imgText: []
+    };
+  },
+  // 发送请求 向后台获取数据
+  created() {
+    api.trainmaterials().then(res => {
+      res.data.forEach(item => {
+        this.imgText.push(item);
+      });
+      console.log(this.imgText);
+    });
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@mixin swrap {
+  margin-top: px2rem(28);
+}
+.img-text {
+  .baby-recycle {
+    height: px2rem(195);
+    display: flex;
+    @include swrap;
+    border-bottom: px2rem(2) solid #ccc;
+    .baby-img-wrap {
+      padding: px2rem(28);
+      // .baby-img {
+      img {
+        width: px2rem(180);
+        height: px2rem(136);
+        border: px2rem(2) dotted #f06;
+        // }
+      }
+    }
+    .baby-intro {
+      @include swrap;
+      width: px2rem(467);
+      height: px2rem(137);
+      .baby-title {
+        font-size: px2rem(28);
+      }
+      .baby-para {
+        font-size: px2rem(22);
+        margin-top: px2rem(15);
+        color: #757575;
+      }
+    }
+  }
+}
+</style>
