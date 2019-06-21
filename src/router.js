@@ -2,7 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 // import AddShop from "./views/AddShop.vue";
-import Visit from "./views/training/Visit";
+import Visit from "./views/training/Visit"; //(牛)
+import Train from "./views/training/Train"; // (牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
 
@@ -21,9 +22,14 @@ export default new Router({
       component: AddShop
     },
     {
-      path: "/Visit",
+      path: "/Visit", // 进店拜访路由 (牛)
       name: "Visit",
       component: Visit
+    },
+    {
+      path: "/Train", // 培训资料 (牛)
+      name: "Train",
+      component: Train
     },
     {
       path: "/shopcarorder",

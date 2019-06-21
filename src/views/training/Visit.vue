@@ -5,34 +5,44 @@
     </topHead>
     <!-- 计划标题部分 -->
     <div class="plan-wrap">
-      <p class="plan-in">计划内</p>
+      <p class="plan-in">
+        计划内
+        <router-link to=""></router-link>
+      </p>
       <p class="plan-out">计划外</p>
     </div>
     <div class="search">
-      <div class="icon iconfont icon-xiazai17"></div>
-      <input class=" letter" placeholder="点击进行搜索～" />
+      <div @click="search" class="icon iconfont icon-xiazai17"></div>
+      <input class="letter" placeholder="点击进行搜索～" v-model="searchVal" />
     </div>
+
     <!-- 超市部分  需要提供后台数据部分 -->
+    <!-- 路由出口  路由匹配到的组件将渲染在这里 -->
+    <!-- <router-view></router-view> -->
     <div class="store-wrap">
-      <div class="store-l">
-        <div class="store-h">文悦超市</div>
-        <div class="store-m">
-          <span>ID:231093</span>
-          <span>创建时间:2016.11.21</span>
-          <p>赵老板</p>
+      <div class="store-main" v-for="item in storeList" :key="item.id">
+        <div class="store-l">
+          <div class="store-h">
+            {{ item.name }}
+          </div>
+          <div class="store-m">
+            <span class="dd">ID: {{ item.pid }}</span>
+            <span class="tt">创建时间:{{ item.subon }}</span>
+            <div class="boss">{{ item.bossName }}</div>
+          </div>
         </div>
-      </div>
-      <div class="store-r">
-        <!-- 1 地址图标 -->
-        <div class="dis">
-          <div class="icon iconfont"></div>
-          <span class="mi"><</span>
-        </div>
-        <!-- 2 右箭头 -->
-        <div class="you"></div>
-        <!-- 3 电话图标 -->
-        <div class="phon">
-          <span>13555457451</span>
+        <div class="store-r">
+          <!-- 1 地址图标 -->
+          <div class="dis">
+            <div class="icon iconfont icon-weizhi"></div>
+            <div class="mi">< {{ item.distance }}</div>
+          </div>
+          <!-- 右箭头部分 -->
+          <div class="you">></div>
+          <div class="phon">
+            <div class="icon iconfont icon-weibiaoti-"></div>
+            <div class="hao">{{ item.phone }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -41,14 +51,32 @@
 
 <script>
 import topHead from "../../components/TopHeader";
+import api from "../../service/api";
+
 export default {
   name: "shop-visit",
-
   data() {
-    return {};
+    return {
+      storeList: [],
+      searchVal: ""
+    };
   },
-  // created(){
-  // },
+  methods: {
+    search() {
+      api.visitShopSearch({ name: this.searchVal }).then(res => {
+        this.storeList = res.data;
+      });
+    }
+  },
+  // 发送请求
+  created() {
+    api.visitShop().then(res => {
+      res.data.forEach(item => {
+        this.storeList.push(item);
+      });
+      console.log(this.storeList);
+    });
+  },
   components: {
     topHead
   }
@@ -90,14 +118,68 @@ export default {
     font-weight: 700;
   }
 }
-
 .letter {
-  color: #ccc;
+  color: #989898;
   margin-left: px2rem(30);
   font-size: $text-size-mid;
   border: none;
   background-color: #fafafa;
   width: 100%;
   height: px2rem(106);
+  outline: none; //去掉默认黄色边框
+}
+// <!-- 超市部分  需要提供后台数据部分 -->
+.store-main {
+  display: flex;
+  height: px2rem(177);
+  border-bottom: px2rem(2) solid #ccc;
+  justify-content: space-around;
+  .store-l {
+    margin-top: px2rem(30);
+    .store-h {
+      font-size: $text-size-mid;
+      margin-bottom: px2rem(20);
+    }
+    .store-m {
+      font-size: $text-size;
+      color: #989898;
+      .dd {
+        padding-right: px2rem(50);
+      }
+      .boss {
+        padding-top: px2rem(20);
+      }
+    }
+  }
+  .store-r {
+    // margin-left: px2rem(50);
+    margin-top: px2rem(30);
+    .dis {
+      display: flex;
+      padding-left: px2rem(40);
+      .icon {
+        font-size: $text-size-mid;
+      }
+      .mi {
+        font-size: px2rem(22);
+      }
+    }
+    .you {
+      text-align: right;
+      color: #989898;
+    }
+    .phon {
+      display: flex;
+      line-height: px2rem(45);
+      .icon {
+        font-size: px2rem(35);
+        font-weight: 600;
+      }
+      .hao {
+        font-size: px2rem(22);
+        color: #4cac6e;
+      }
+    }
+  }
 }
 </style>
