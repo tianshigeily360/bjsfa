@@ -6,7 +6,7 @@
     <!-- 搜索区域 -->
     <div class="search clearfix">
       <div class="inputBox clearfix">
-        <input v-model="searchValue" type="text" placeholder="点击进行搜索～">
+        <input v-model="searchValue" type="text" placeholder="点击进行搜索～" />
         <div @click="searchVal" class="icon iconfont icon-xiazai17"></div>
       </div>
       <div class="rwm">
@@ -16,29 +16,38 @@
     <!-- tab 标签切换 -->
     <div class="tab">
       <ul>
-        <li @click="openList(item.id)" class="tabItem" v-for="item in orderMenuArr" :key="item.id">
-          <a href="javascript:0">{{ item.menuName }}</a>
+        <li
+          ref="focused"
+          @click="openList(item.id)"
+          class="tabItem"
+          v-for="item in orderMenuArr"
+          :key="item.id"
+        >
+          <a :class="{ active: item.id == index }" href="javascript:0">
+            {{ item.menuName }}
+          </a>
         </li>
       </ul>
     </div>
     <!-- 中间 count -->
     <div class="middle">
       <div class="count-box">
-        <div class="count">{{ orderListArr.length }}/3590</div>
+        <div class="count">
+          {{ orderListArr.length }}/{{ orderListAllArr.length }}
+        </div>
         <div class="category">洗护 / 食品 / 宝洁</div>
       </div>
       <div class="icon iconfont icon-shaixuan"></div>
     </div>
     <!-- 商品区域 -->
     <ul class="goods-list">
-      <router-link v-for="item in orderListArr"
-          :key="item.id" :to="'/productoption/'+item.id">
-        <li
-          
-          @click="openProduct(item)"
-          class="goods-item"
-        >
-          <img :src="item.img" :alt="item.title">
+      <router-link
+        v-for="item in orderListArr"
+        :key="item.id"
+        :to="'/productoption/' + item.id"
+      >
+        <li class="goods-item">
+          <img :src="item.img" :alt="item.title" />
           <div class="goods-item-content">
             <h3>{{ item.title }}</h3>
             <div class="content-code">
@@ -65,14 +74,15 @@
 <script>
 import topheader from "../../components/TopHeader";
 import api from "../../service/api";
-import eventbus from "../../eventbus";
 export default {
   name: "order",
   data() {
     return {
       orderMenuArr: [],
+      orderListAllArr: [],
       orderListArr: [],
-      searchValue: ""
+      searchValue: "",
+      index: 2
     };
   },
   methods: {
@@ -88,12 +98,21 @@ export default {
         });
       } else {
         api.getOrderList({ menuId: id }).then(res => {
-          console.log(id);
-          console.log(res.data);
           this.orderListArr = res.data;
         });
       }
+      this.index = id;
     }
+    // isFocus() {
+    //   this.orderMenuArr.forEach(item => {
+    //     if (item.id == this.index) {
+    //       this.$nextTick(() => {
+    //         console.log(this.$refs.focused);
+    //         // this.$refs.focused.focus();
+    //       });
+    //     }
+    //   });
+    // }
   },
   components: {
     topheader
@@ -103,9 +122,10 @@ export default {
       this.orderMenuArr = res.data;
     });
     api.getOrderListAll().then(res => {
-      this.orderListArr = res.data;
+      this.orderListAllArr = res.data;
       this.$store.commit("initProdcutList", res.data);
     });
+    this.openList(2);
   }
 };
 </script>
@@ -121,19 +141,17 @@ export default {
     width: 80%;
     position: relative;
     border-right: 1px solid #808080;
-    input,
-    .icon {
-      font-size: px2rem(24);
-    }
     input {
+      font-size: px2rem(24);
       border: none;
-      margin-left: px2rem(28);
+      margin-left: px2rem(35);
     }
     .icon {
+      font-size: px2rem(30);
       position: absolute;
       font-weight: 700;
       left: 0;
-      top: px2rem(23);
+      top: px2rem(5);
     }
   }
   .rwm {
@@ -163,14 +181,10 @@ export default {
       &:last-child {
         border-right: none;
       }
-      a {
-        &:focus {
-          color: #04afe8;
-        }
-      }
     }
   }
 }
+
 // 中间 count
 .middle {
   position: relative;
@@ -247,5 +261,9 @@ export default {
       }
     }
   }
+}
+
+.active {
+  color: #04afe8;
 }
 </style>
