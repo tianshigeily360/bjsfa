@@ -6,16 +6,23 @@
       </TopHeader>
     </div>
     <div class="shopCar-menu">
+      <!-- 仓库位置 -->
       <div class="menu-top">
         <div class="top-left">
-          <i class="checkBorder" @click="colorData" :class="{checkColor:actColor === true}"></i>新乐保洁小仓位
+          <i class="radioBorder" @click="colorData" :class="{radioColor:actColor === true}"></i>新乐保洁小仓位
         </div>
         <div class="top-right">
           备注
           <i class="icon iconfont icon-beizhu"></i>
         </div>
       </div>
+      <!-- 商品位置 -->
       <div class="menu-cen" v-for="item in prouctData" :key="item.item.id">
+        <i
+          class="checkBorder"
+          @click="checkColorData(item.item.id)"
+          :class="{checkColor:item.isMarked === true }"
+        ></i>
         <div class="menuCenL">
           <div class="menuLeft">
             <img :src="item.item.img" alt>
@@ -26,16 +33,24 @@
             <div class="menuCen">
               <p class="second">
                 价格:
-                <span>{{item.item.monery}}元</span>
+                <span>{{item.totalprice}}元</span>
               </p>
               <p class="hiden">
-                <i @click="proDataJian" class="icon iconfont icon-jian"></i>
+                <i @click="proDataJian(item.item.id)" class="icon iconfont icon-jian"></i>
                 <span class="numclass">{{item.num}}</span>
-                <i @click="proDataJia" class="icon iconfont icon-jia"></i>
+                <i @click="proDataJia(item.item.id)" class="icon iconfont icon-jia"></i>
               </p>
             </div>
           </div>
         </div>
+      </div>
+      <!-- 结算位置 -->
+      <div class="menu-bottom">
+        <div class="bottom-left">
+          <i class="radioBorder2" @click="colorData" :class="{radioColor2:actColor === true}"></i>全选
+        </div>
+        <div class="bottom-middle">合计：<span>{{getTotalPrice}}元</span></div>
+        <div class="bottom-right" @click="toCommit">确认</div>
       </div>
     </div>
   </div>
@@ -47,36 +62,85 @@ export default {
   name: "shoppingtrolley",
   data() {
     return {
-      actColor: false,
-      prouctData: "",
-      actName:""
+      actColor: false, // 仓库是否选中状态
+      prouctData: "", // 购物车中的商品
+      actName: "", // 超市名字
+      originPrice: "", //
+      cheColor: "" // 商品选中状态
     };
+  },
+  computed: {
+    getTotalPrice() {
+      let jixinger = 0;
+      this.prouctData.forEach(item => {
+        if (item.isMarked) {
+          jixinger += item.item.monery * item.num;
+        }
+      })
+      return jixinger;
+    }
   },
   components: {
     TopHeader
   },
   methods: {
-    //点击选中和取消选中
+    //点击仓库选中和取消选中
     colorData() {
       if (this.actColor === true) {
-        this.actColor = false;
+        // 点击仓库商品取消全选
+        this.prouctData.forEach(item => {
+          this.actColor = false;
+          item.isMarked = false;
+        });
       } else {
-        this.actColor = true;
+        // 点击仓库商品全选
+        this.prouctData.forEach(item => {
+          this.actColor = true;
+          item.isMarked = true;
+        });
       }
     },
-    //点击数量增加
-    proDataJian() {
+    //订单多选和取消
+    checkColorData(id) {
       this.prouctData.forEach(item => {
-        if (item.num > 1) {
-          item.num--;
+        // 校验是否是当前点击的商品 id
+        if (item.item.id === id) {
+          if (item.isMarked) {
+            item.isMarked = false;
+          } else {
+            item.isMarked = true;
+          }
         }
       });
     },
     //点击数量减少
-    proDataJia() {
+    proDataJian(id) {
       this.prouctData.forEach(item => {
-        item.num++;
+        //找到对应的数据
+        if (item.item.id === id) {
+          //最低不能小于0
+          if (item.num > 1) {
+            //点击数量减小
+            item.num--;
+            item.totalprice = item.item.monery * item.num;
+          }
+        }
       });
+    },
+    //点击数量增加
+    proDataJia(id) {
+      this.prouctData.forEach(item => {
+        //找到对应的数据
+        if (item.item.id === id) {
+          //点击数量增加
+          item.num++;
+          item.totalprice = item.item.monery * item.num;
+        }
+      });
+    },
+    toCommit() {
+      console.log(this.getTotalPrice);
+      // this.$route.push("/commitorder")
     }
   },
   created() {
@@ -106,30 +170,6 @@ export default {
       padding: 0 px2rem(28) 0 px2rem(70);
       .top-left {
         position: relative;
-        .checkBorder {
-          display: inline-block;
-          position: absolute;
-          border: 1px solid rgb(179, 177, 177);
-          width: px2rem(26);
-          height: px2rem(26);
-          top: px2rem(8);
-          left: px2rem(-45);
-          border-radius: px2rem(13);
-          // position: relative;
-        }
-        .checkColor {
-          &::before {
-            display: block;
-            position: absolute;
-            content: "";
-            background-color: #00a2eb;
-            width: px2rem(16);
-            height: px2rem(16);
-            border-radius: px2rem(8);
-            top: px2rem(5);
-            left: px2rem(5);
-          }
-        }
       }
       .top-right {
         .icon {
@@ -142,6 +182,7 @@ export default {
     .menu-cen {
       height: px2rem(180);
       border-bottom: 1px solid #d3caca;
+      position: relative;
       .menuCenL {
         height: px2rem(182);
         display: flex;
@@ -210,6 +251,114 @@ export default {
           }
         }
       }
+    }
+
+    .menu-bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 0 px2rem(25);
+      box-sizing: border-box;
+      height: px2rem(110);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .bottom-left {
+        position: relative;
+        font-size: px2rem(22);
+        padding-left: px2rem(30);
+      }
+      .bottom-middle {
+        font-size: px2rem(22);
+        span {
+          color: #ff0505;
+        }
+      }
+      .bottom-right {
+        font-size: px2rem(26);
+        width: px2rem(168);
+        height: px2rem(70);
+        line-height: px2rem(70);
+        text-align: center;
+        border-radius: px2rem(3);
+        background-color: #10903d;
+        color: #fff;
+
+      }
+    }
+  }
+
+  .radioBorder {
+    display: inline-block;
+    position: absolute;
+    border: 1px solid rgb(179, 177, 177);
+    width: px2rem(26);
+    height: px2rem(26);
+    top: px2rem(8);
+    left: px2rem(-45);
+    border-radius: px2rem(13);
+    // position: relative;
+  }
+  .radioColor {
+    &::before {
+      display: block;
+      position: absolute;
+      content: "";
+      background-color: #00a2eb;
+      width: px2rem(16);
+      height: px2rem(16);
+      border-radius: px2rem(8);
+      top: px2rem(5);
+      left: px2rem(5);
+    }
+  }
+  .radioBorder2 {
+    display: inline-block;
+    position: absolute;
+    border: 1px solid rgb(179, 177, 177);
+    width: px2rem(26);
+    height: px2rem(26);
+    bottom: px2rem(0);
+    left: px2rem(0);
+    border-radius: px2rem(13);
+    // position: relative;
+  }
+  .radioColor2 {
+    &::before {
+      display: block;
+      position: absolute;
+      content: "";
+      background-color: #00a2eb;
+      width: px2rem(16);
+      height: px2rem(16);
+      border-radius: px2rem(8);
+      bottom: px2rem(5);
+      left: px2rem(5);
+    }
+  }
+
+  .checkBorder {
+    display: inline-block;
+    position: absolute;
+    border: 1px solid rgb(179, 177, 177);
+    width: px2rem(26);
+    height: px2rem(26);
+    top: px2rem(76);
+    left: px2rem(25);
+    border-radius: px2rem(13);
+    // position: relative;
+  }
+  .checkColor {
+    &::before {
+      display: block;
+      position: absolute;
+      content: "";
+      background-color: #00a2eb;
+      width: px2rem(16);
+      height: px2rem(16);
+      border-radius: px2rem(8);
+      top: px2rem(5);
+      left: px2rem(5);
     }
   }
 }
