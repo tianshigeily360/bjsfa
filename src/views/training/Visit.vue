@@ -7,7 +7,7 @@
     <div class="plan-wrap">
       <p class="plan-in">
         计划内
-        <router-link to=""></router-link>
+        <router-link to></router-link>
       </p>
       <p class="plan-out">计划外</p>
     </div>
@@ -18,13 +18,15 @@
 
     <!-- 超市部分  需要提供后台数据部分 -->
     <!-- 路由出口  路由匹配到的组件将渲染在这里 -->
-    <!-- <router-view></router-view> -->
     <div class="store-wrap">
-      <div class="store-main" v-for="item in storeList" :key="item.id">
+      <div
+        class="store-main"
+        @click="getShop(item)"
+        v-for="item in storeList"
+        :key="item.id"
+      >
         <div class="store-l">
-          <div class="store-h">
-            {{ item.name }}
-          </div>
+          <div class="store-h">{{ item.name }}</div>
           <div class="store-m">
             <span class="dd">ID: {{ item.pid }}</span>
             <span class="tt">创建时间:{{ item.subon }}</span>
@@ -66,6 +68,11 @@ export default {
       api.visitShopSearch({ name: this.searchVal }).then(res => {
         this.storeList = res.data;
       });
+    },
+    getShop(item) {
+      //当前点击的数据存入vuex
+      this.$store.commit("initgetShopData", item);
+      this.$router.push("/activity");
     }
   },
   // 发送请求
@@ -73,6 +80,7 @@ export default {
     api.visitShop().then(res => {
       res.data.forEach(item => {
         this.storeList.push(item);
+        this.$store.commit("initVisitList", res.data);
       });
       console.log(this.storeList);
     });

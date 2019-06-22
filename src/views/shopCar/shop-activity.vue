@@ -4,7 +4,7 @@
       <div class="r" slot="r">结束拜访</div>
     </topHead>
     <div class="activityMenu">
-      <div class="activity-top">A超市宝洁</div>
+      <div class="activity-top">{{actName.name}}</div>
       <div class="activityCent">
         <div class="chiOne">
           <div class="oneLeft">
@@ -35,12 +35,9 @@
     </div>
 
     <div class="btnBottom">
-      <router-link to="/shopcarorder">
-        <div class="sitDown">下单</div>
-      </router-link>
+      <div class="sitDown" @click="toOrder">下单</div>
       <div class="sitDown">商店签到</div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -51,20 +48,29 @@ export default {
   name: "shop-activity",
   data() {
     return {
-      dataList: ""
+      dataList: "",
+      actName: ""
     };
   },
   components: {
     topHead
   },
-  methods: {},
+  methods: {
+    toOrder() {
+      this.$router.push("/shopcarorder");
+    }
+  },
   created() {
     server.getActivity().then(res => {
       res.data.forEach(item => {
-        if (item.shopId == 5) {
+        if (item.shopId == this.$store.state.getShopData.id) {
           this.dataList = item;
         }
       });
+      //拿到对应商家活动数据
+      this.actName = this.$store.state.VisitList.find(
+        item => item.id == this.$store.state.getShopData.id
+      );
     });
   }
 };

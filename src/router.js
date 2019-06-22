@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 // import AddShop from "./views/AddShop.vue";
 import Visit from "./views/training/Visit"; //(牛)
 import Train from "./views/training/Train"; // (牛)
+import Mycar from "./views/training/Mycar"; //(牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
 import commitOrder from "./views/shopCar/commitOrder.vue";
@@ -11,6 +12,7 @@ import ShopSignIn from "./views/orders/ShopSignIn.vue";
 
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
+import shoppingtrolley from "./views/shopCar/shoppingTrolley";
 
 Vue.use(Router);
 
@@ -32,6 +34,11 @@ export default new Router({
       component: productOption
     },
     {
+      path: "/shoppingtrolley", //购物车路由
+      name: "shoppingtrolley",
+      component: shoppingtrolley
+    },
+    {
       path: "/addshop",
       name: "addshop",
       component: AddShop
@@ -42,9 +49,14 @@ export default new Router({
       component: Visit
     },
     {
-      path: "/Train", // 培训资料 (牛)
+      path: "/Train", // 培训资料 路由(牛)
       name: "Train",
       component: Train
+    },
+    {
+      path: "/Mycar", //购物车 路由(牛)
+      name: "Mycar",
+      component: Mycar
     },
     {
       path: "/activity", //店内活动路由

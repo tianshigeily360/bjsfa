@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <topheader title="下单">
-      <div slot="r" class="icon iconfont icon-tubiaolunkuo-"></div>
+      <div @click="goShopCar" slot="r" class="icon iconfont icon-tubiaolunkuo-"></div>
     </topheader>
     <!-- 搜索区域 -->
     <div class="search clearfix">
@@ -90,6 +90,9 @@ export default {
       api.getOrderListTitle({ title: this.searchValue }).then(res => {
         this.orderListArr = res.data;
       });
+    },
+    goShopCar() {
+      this.$router.push("/shoppingtrolley");
     },
     openList(id) {
       if (id == 2) {
