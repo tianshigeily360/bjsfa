@@ -60,10 +60,10 @@ export default {
   name: "my-car",
   components: {
     "top-head": TopHead
-  },
-  data() {
-    return {};
   }
+  // data() {
+  //   return {};
+  // }
   // methods: {
   //   handleClick(typeName) {
   //     if (typeName === "jia") {
