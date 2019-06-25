@@ -5,7 +5,6 @@ import store from "./store";
 import "./lib/hotcss/hotcss.js";
 import VeeValidate from "vee-validate";
 import helper from "./lib/helper";
-// import MintUI from "mint-ui";
 import "mint-ui/lib/style.css";
 import MintUI from "mint-ui";
 import "./static/css/mint-ui.scss";

@@ -14,6 +14,7 @@ import commitOrder from "./views/shopCar/commitOrder.vue";
 
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
+import shoppingtrolley from "./views/shopCar/shoppingTrolley";
 
 Vue.use(Router);
 
@@ -48,6 +49,11 @@ export default new Router({
       path: "/productOption/:id",
       name: "productOption",
       component: productOption
+    },
+    {
+      path: "/shoppingtrolley", //购物车路由
+      name: "shoppingtrolley",
+      component: shoppingtrolley
     },
     {
       path: "/addshop",
