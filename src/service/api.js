@@ -5,7 +5,17 @@ export default {
   getsth() {
     axios.get();
   },
-
+  getOrderStatus() {
+    //罗 获取订单状态
+    return axios.get("/bj/orderIndex");
+  },
+  getShopName() {
+    //点击查询获取超市
+    return axios.get("bj/visitIn");
+  },
+  fuzzyquery(params) {
+    return axios.get(`bj/visitIn?name_like=${params.name}`);
+  },
   // #region店内活动
   // 下单页
   // 下单页tab标签
