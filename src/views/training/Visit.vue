@@ -13,14 +13,19 @@
     </div>
     <div class="search">
       <div @click="search" class="icon iconfont icon-xiazai17"></div>
-      <input class="letter" placeholder="点击进行搜索～" v-model="searchVal">
+      <input class="letter" placeholder="点击进行搜索～" v-model="searchVal" />
     </div>
 
     <!-- 超市部分  需要提供后台数据部分 -->
     <!-- 路由出口  路由匹配到的组件将渲染在这里 -->
     <!-- <router-view></router-view> -->
     <div class="store-wrap">
-      <div class="store-main" @click="getShop(item)" v-for="item in storeList" :key="item.id">
+      <div
+        class="store-main"
+        @click="getShop(item)"
+        v-for="item in storeList"
+        :key="item.id"
+      >
         <div class="store-l">
           <div class="store-h">{{ item.name }}</div>
           <div class="store-m">
@@ -68,7 +73,7 @@ export default {
     getShop(item) {
       //当前点击的数据存入vuex
       this.$store.commit("initgetShopData", item);
-      this.$router.push('/activity')
+      this.$router.push("/activity");
     }
   },
   // 发送请求

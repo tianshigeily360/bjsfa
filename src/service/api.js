@@ -5,7 +5,21 @@ export default {
   getsth() {
     axios.get();
   },
-
+  getOrderStatus() {
+    //罗 获取订单状态
+    return axios.get("/bj/orderIndex");
+  },
+  getShopName() {
+    // 罗 点击查询获取超市
+    return axios.get("bj/visitIn");
+  },
+  fuzzyquery(params) {
+    return axios.get(`/bj/visitIn?name_like=${params.name}`);
+  },
+  //获取店内活动接口(罗)
+  getActivity1(shopid) {
+    return axios.get(`/bj/activity?shopId=${shopid}`);
+  },
   // #region店内活动
   // 下单页
   // 下单页tab标签
@@ -14,7 +28,8 @@ export default {
   },
   visitShop() {
     //进店拜访
-    return axios.get("bj/visitIn");
+    // console.log(1);
+    return axios.get("/bj/visitIn");
   },
   // 查询超市
   visitShopSearch(params) {
