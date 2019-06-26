@@ -1,7 +1,11 @@
 <template>
   <div class="order">
     <topheader title="下单">
-      <div @click="goShopCar" slot="r" class="icon iconfont icon-tubiaolunkuo-"></div>
+      <div
+        @click="goShopCar"
+        slot="r"
+        class="icon iconfont icon-tubiaolunkuo-"
+      ></div>
     </topheader>
     <!-- 搜索区域 -->
     <div class="search clearfix">

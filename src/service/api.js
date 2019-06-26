@@ -26,15 +26,29 @@ export default {
   getOrderMenu() {
     return axios.get("/bj/orderMenu");
   },
+  //进店拜访(牛)
   visitShop() {
     //进店拜访
     // console.log(1);
     return axios.get("/bj/visitIn");
   },
-  // 查询超市
+  // 查询超市(牛)
   visitShopSearch(params) {
     return axios.get(`bj/visitIn?name_like=${params.name}`);
   },
+  // 培训资料(牛)
+  trainmaterials() {
+    return axios.get("/bj/trainingImg");
+  },
+  // 购物车(牛)
+  myCar() {
+    return axios.get("/bj/orderList");
+  },
+  // 店内活动下单页(牛)
+  storeActivity(id) {
+    return axios.get("bj/activity", { params: { shopId: id } });
+  },
+
   //店内活动接口
   getActivity() {
     return axios.get("/bj/activity");

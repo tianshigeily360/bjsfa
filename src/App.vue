@@ -5,7 +5,7 @@
 </template>
 <script>
 import "./assets/cssreset.css";
-import "./assets/style/main.scss"
+import "./assets/style/main.scss";
 
 export default {};
 </script>

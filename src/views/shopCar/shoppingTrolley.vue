@@ -9,7 +9,12 @@
       <!-- 仓库位置 -->
       <div class="menu-top">
         <div class="top-left">
-          <i class="radioBorder" @click="colorData" :class="{radioColor:actColor === true}"></i>新乐保洁小仓位
+          <i
+            class="radioBorder"
+            @click="colorData"
+            :class="{ radioColor: actColor === true }"
+          ></i
+          >新乐保洁小仓位
         </div>
         <div class="top-right">
           备注
@@ -21,24 +26,30 @@
         <i
           class="checkBorder"
           @click="checkColorData(item.item.id)"
-          :class="{checkColor:item.isMarked === true }"
+          :class="{ checkColor: item.isMarked === true }"
         ></i>
         <div class="menuCenL">
           <div class="menuLeft">
-            <img :src="item.item.img" alt>
+            <img :src="item.item.img" alt />
           </div>
           <div class="menuRight">
-            <p class="first">{{item.item.title}}</p>
-            <span class="three">选中仓库: {{actName.ditch}}</span>
+            <p class="first">{{ item.item.title }}</p>
+            <span class="three">选中仓库: {{ actName.ditch }}</span>
             <div class="menuCen">
               <p class="second">
                 价格:
-                <span>{{item.totalprice}}元</span>
+                <span>{{ item.totalprice }}元</span>
               </p>
               <p class="hiden">
-                <i @click="proDataJian(item.item.id)" class="icon iconfont icon-jian"></i>
-                <span class="numclass">{{item.num}}</span>
-                <i @click="proDataJia(item.item.id)" class="icon iconfont icon-jia"></i>
+                <i
+                  @click="proDataJian(item.item.id)"
+                  class="icon iconfont icon-jian"
+                ></i>
+                <span class="numclass">{{ item.num }}</span>
+                <i
+                  @click="proDataJia(item.item.id)"
+                  class="icon iconfont icon-jia"
+                ></i>
               </p>
             </div>
           </div>
@@ -47,9 +58,16 @@
       <!-- 结算位置 -->
       <div class="menu-bottom">
         <div class="bottom-left">
-          <i class="radioBorder2" @click="colorData" :class="{radioColor2:actColor === true}"></i>全选
+          <i
+            class="radioBorder2"
+            @click="colorData"
+            :class="{ radioColor2: actColor === true }"
+          ></i
+          >全选
         </div>
-        <div class="bottom-middle">合计：<span>{{getTotalPrice}}元</span></div>
+        <div class="bottom-middle">
+          合计：<span>{{ getTotalPrice }}元</span>
+        </div>
         <div class="bottom-right" @click="toCommit">确认</div>
       </div>
     </div>
@@ -76,7 +94,7 @@ export default {
         if (item.isMarked) {
           jixinger += item.item.monery * item.num;
         }
-      })
+      });
       return jixinger;
     }
   },
@@ -283,7 +301,6 @@ export default {
         border-radius: px2rem(3);
         background-color: #10903d;
         color: #fff;
-
       }
     }
   }
