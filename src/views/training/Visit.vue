@@ -19,8 +19,8 @@
     <div class="store-wrap">
       <div
         class="store-main"
-        v-for="item in storeList"
         @click="getShop(item)"
+        v-for="item in storeList"
         :key="item.id"
       >
         <div class="store-l">
@@ -69,7 +69,6 @@ export default {
     },
     getShop(item) {
       this.$store.commit("initgetShopData", item);
-
       this.$router.push("/activity");
     }
   },
