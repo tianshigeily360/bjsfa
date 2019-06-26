@@ -24,6 +24,14 @@ export default {
   trainmaterials() {
     return axios.get("/bj/trainingImg");
   },
+  // 购物车(牛)
+  myCar() {
+    return axios.get("/bj/orderList");
+  },
+  // 店内活动下单页(牛)
+  storeActivity(id) {
+    return axios.get("bj/activity", { params: { shopId: id } });
+  },
 
   //店内活动接口
   getActivity() {

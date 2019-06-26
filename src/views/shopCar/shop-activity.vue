@@ -4,31 +4,34 @@
       <div class="r" slot="r">结束拜访</div>
     </topHead>
     <div class="activityMenu">
-      <div class="activity-top">{{actName.name}}</div>
+      <div class="activity-top">{{ actName.name }}</div>
       <div class="activityCent">
         <div class="chiOne">
           <div class="oneLeft">
-            <img src="../../assets/activityImg/销量.png" alt> 本月至今销量
+            <img src="../../assets/activityImg/销量.png" alt /> 本月至今销量
           </div>
-          <div class="oneRight">{{dataList.month}}</div>
+          <div class="oneRight">{{ dataList.month }}</div>
         </div>
         <div class="chiOne">
           <div class="oneLeft">
-            <img src="../../assets/activityImg/销量数据.png" alt> 过往半年月均销量
+            <img src="../../assets/activityImg/销量数据.png" alt />
+            过往半年月均销量
           </div>
-          <div class="oneRight">{{dataList.year}}</div>
+          <div class="oneRight">{{ dataList.year }}</div>
         </div>
         <div class="chiThree">
           <div class="thr-top">
             <div class="thrLeft">
-              <img src="../../assets/activityImg/百分比.png" alt> 核心分销完成率
+              <img src="../../assets/activityImg/百分比.png" alt />
+              核心分销完成率
             </div>
-            <div class="thrRight">{{dataList.percent}}%</div>
+            <div class="thrRight">{{ dataList.percent }}%</div>
           </div>
           <mt-progress :value="dataList.percent" :bar-height="15"></mt-progress>
         </div>
       </div>
     </div>
+
     <div class="bottom">
       <div class="bottom-top">用户拜访备注:</div>
       <textarea placeholder="点击填写拜访备注"></textarea>
@@ -75,7 +78,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .r {

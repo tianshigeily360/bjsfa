@@ -7,7 +7,7 @@
     </div>
     <div class="menu-top">
       <div class="menuLeft">
-        <img :src="proData.img" alt>
+        <img :src="proData.img" alt />
       </div>
       <div class="menuRight">
         <p class="first">{{ proData.title }}</p>
@@ -24,8 +24,8 @@
       <div class="menuCen">
         <p>仓库</p>
         <p>
-          {{actName.ditch}}
-          <img src="../../assets/activityImg/小于号.png" alt>
+          {{ actName.ditch }}
+          <img src="../../assets/activityImg/小于号.png" alt />
         </p>
       </div>
       <div class="menuCen">

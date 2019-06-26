@@ -29,10 +29,11 @@ export default {
   // 发送请求 向后台获取数据
   created() {
     api.trainmaterials().then(res => {
-      res.data.forEach(item => {
-        this.imgText.push(item);
-      });
-      console.log(this.imgText);
+      // res.data.forEach(item => {
+      //   this.imgText.push(item);
+      // });
+      // console.log(this.imgText);
+      this.imgText = res.data;
     });
   }
 };
