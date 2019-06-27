@@ -11,7 +11,11 @@ export default new Vuex.Store({
     //产品选择购物车跳转
     shopCarData: [],
     //点击店铺数据
-    getShopData: ""
+    getShopData: "",
+    // 登录
+    LoginUser: sessionStorage.getItem("LoginUser")
+      ? JSON.parse(sessionStorage.getItem("LoginUser"))
+      : null
   },
   mutations: {
     initProdcutList(state, payload) {
@@ -28,7 +32,16 @@ export default new Vuex.Store({
     //点击店铺数据
     initgetShopData(state, payload) {
       state.getShopData = payload;
+    },
+    // 登录
+    initUser(state, payload) {
+      state.LoginUser = payload;
     }
   },
-  actions: {}
+  actions: {},
+  getters: {
+    getLoginUser(state) {
+      return state.LoginUser;
+    }
+  }
 });

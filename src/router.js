@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Login from "./views/login/Login";
+import Home from "./views/login/Home.vue";
+import Notice from "./views/login/Notice.vue";
+// import Home from "./views/Home.vue";
 // import AddShop from "./views/AddShop.vue";
 import Visit from "./views/training/Visit"; //(牛)
 import Train from "./views/training/Train"; // (牛)
@@ -17,10 +20,15 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    // {
+    //   path: "/",
+    //   name: "home",
+    //   component: Home
+    // },
     {
-      path: "/",
-      name: "home",
-      component: Home
+      path: "/", // 登录路由
+      name: "login",
+      component: Login
     },
     {
       path: "/ShopSignIn",
@@ -66,6 +74,16 @@ export default new Router({
       path: "/commitorder", // 提交订单路由
       name: "commitOrder",
       component: commitOrder
+    },
+    {
+      path: "/home", //首页路由
+      name: "home",
+      component: Home
+    },
+    {
+      path: "/notice", //公司通告路由
+      name: "Notice",
+      component: Notice
     },
     {
       path: "/about",

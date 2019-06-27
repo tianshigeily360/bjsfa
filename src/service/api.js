@@ -5,7 +5,26 @@ export default {
   getsth() {
     axios.get();
   },
-
+  // 登录
+  postUserLogin(data) {
+    return axios.post("/api/userlogin", data);
+  },
+  //首页饼图接口
+  getUserProgress() {
+    return axios.get("/bj/echartData");
+  },
+  // 公司公告
+  getNotices() {
+    return axios.get("/bj/announce");
+  },
+  // 公告信息
+  getMessage() {
+    return axios.get("/bj/message");
+  },
+  // // 九宫格
+  // getUserMenuCell() {
+  //   return axios.get("/bj/menuList");
+  // },
   // #region店内活动
   // 下单页
   // 下单页tab标签
