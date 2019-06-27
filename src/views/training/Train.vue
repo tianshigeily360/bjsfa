@@ -76,7 +76,7 @@ export default {
   padding: 0 px2rem(2) 0 px2rem(2);
   font-size: px2rem(28);
   .train-item.actived > div {
-    color: #ff0;
+    color: rgb(255, 0, 140);
   }
   .train-l {
     .train-img {

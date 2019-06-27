@@ -24,8 +24,8 @@
       <div class="menuCen">
         <p>仓库</p>
         <p>
-          {{actName.ditch}}
-          <img src="../../assets/activityImg/小于号.png" alt>
+          {{ actName.ditch }}
+          <img src="../../assets/activityImg/小于号.png" alt />
         </p>
       </div>
       <div class="menuCen">
@@ -58,7 +58,8 @@ export default {
     return {
       proData: "",
       numData: 1,
-      actName:""
+      actName: "",
+      money: ""
     };
   },
   components: {
@@ -81,9 +82,14 @@ export default {
     },
     //跳转到购物车
     goShopCar() {
+      //计算加入购物车的商品总价
+      this.money = this.proData.monery * this.numData;
+
       this.$store.commit("initshopCarData", {
         item: this.proData,
-        num: this.numData
+        num: this.numData,
+        totalprice: this.money,
+        isMarked: true
       });
       this.$router.go(-1);
     }

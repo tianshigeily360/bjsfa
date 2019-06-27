@@ -1,7 +1,11 @@
 module.exports = {
   devServer: {
     proxy: {
+<<<<<<< HEAD
       "/api": {
+=======
+      "^/api": {
+>>>>>>> 9af339797bfe716d8bbca6f57735a0503e7f3ce5
         target: "http://localhost:8848/",
         ws: true,
         changeOrigin: true,
@@ -9,7 +13,11 @@ module.exports = {
           "^/api": "/api" // rewrite path
         }
       },
+<<<<<<< HEAD
       "/bj": {
+=======
+      "^/bj": {
+>>>>>>> 9af339797bfe716d8bbca6f57735a0503e7f3ce5
         target: "http://localhost:8848/",
         ws: true,
         changeOrigin: true,

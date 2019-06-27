@@ -16,11 +16,13 @@
       <input class="letter" placeholder="点击进行搜索～" v-model="searchVal" />
     </div>
 
+    <!-- 超市部分  需要提供后台数据部分 -->
+    <!-- 路由出口  路由匹配到的组件将渲染在这里 -->
     <div class="store-wrap">
       <div
         class="store-main"
-        @click="getShop(item)"
         v-for="item in storeList"
+        @click="getShop(item)"
         :key="item.id"
       >
         <div class="store-l">
@@ -62,23 +64,42 @@ export default {
     };
   },
   methods: {
+    // 模糊搜索 搜索到对应的内容
     search() {
       api.visitShopSearch({ name: this.searchVal }).then(res => {
         this.storeList = res.data;
       });
     },
     getShop(item) {
-      this.$store.commit("initgetShopData", item);
-      this.$router.push("/activity");
+      //当前点击的数据存入vuex
+      // this 是什么 当前组件的实例 (相当于一个对象， 对象中有属性和方法)
+      // this.$store 是什么？ 是因为我们在 main.js中 给Vue原型上绑定了这个 store
+      // this.$store.commit 是什么?
+      // this.$store.commit("initgetShaoData") 是什么？
+      // this.$store.commit("initgetShaoData", item) 是什么？
+      // this.$store.commit("initgetShopData", item);
+      // 跳转页面 到 router.js 中配置好的routes 的 path属性 一致的组件
+      // this.$router 是什么？
+      // this.$router.push 是什么 --> 跳转到一个path路径
+      this.$router.push(`/Store/${item.id}`); //跳转到店内拜访页
     }
   },
   // 发送请求
   created() {
+    // 1. 列表的数据是怎么出来的
+    // 2. 列表中的数据有什么用
+    // 3. 页面跳转 和 跳转的时候需要带的参数
+    // debugger;
     api.visitShop().then(res => {
-      res.data.forEach(item => {
-        this.storeList.push(item);
-        this.$store.commit("initVisitList", res.data);
-      });
+      // res.data.forEach(item => {
+      //   this.storeList.push(item);
+      //   this.$store.commit("initVisitList", res.data);
+      // });
+      // console.log(this.storeList);
+      // 这个效果比上面的更优化
+      const storeList = res.data;
+      this.storeList = storeList;
+      this.$store.commit("initVisitList", storeList);
     });
   },
   components: {

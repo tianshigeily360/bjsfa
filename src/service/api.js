@@ -5,40 +5,50 @@ export default {
   getsth() {
     axios.get();
   },
-  // 登录
-  postUserLogin(data) {
-    return axios.post("/api/userlogin", data);
+  getOrderStatus() {
+    //罗 获取订单状态
+    return axios.get("/bj/orderIndex");
   },
-  //首页饼图接口
-  getUserProgress() {
-    return axios.get("/bj/echartData");
+  getShopName() {
+    // 罗 点击查询获取超市
+    return axios.get("bj/visitIn");
   },
-  // 公司公告
-  getNotices() {
-    return axios.get("/bj/announce");
+  fuzzyquery(params) {
+    return axios.get(`/bj/visitIn?name_like=${params.name}`);
   },
-  // 公告信息
-  getMessage() {
-    return axios.get("/bj/message");
+  //获取店内活动接口(罗)
+  getActivity1(shopid) {
+    return axios.get(`/bj/activity?shopId=${shopid}`);
   },
-  // // 九宫格
-  // getUserMenuCell() {
-  //   return axios.get("/bj/menuList");
-  // },
   // #region店内活动
   // 下单页
   // 下单页tab标签
   getOrderMenu() {
     return axios.get("/bj/orderMenu");
   },
+  //进店拜访(牛)
   visitShop() {
     //进店拜访
-    return axios.get("bj/visitIn");
+    // console.log(1);
+    return axios.get("/bj/visitIn");
   },
-  // 查询超市
+  // 查询超市(牛)
   visitShopSearch(params) {
     return axios.get(`bj/visitIn?name_like=${params.name}`);
   },
+  // 培训资料(牛)
+  trainmaterials() {
+    return axios.get("/bj/trainingImg");
+  },
+  // 购物车(牛)
+  myCar() {
+    return axios.get("/bj/orderList");
+  },
+  // 店内活动下单页(牛)
+  storeActivity(id) {
+    return axios.get("bj/activity", { params: { shopId: id } });
+  },
+
   //店内活动接口
   getActivity() {
     return axios.get("/bj/activity");

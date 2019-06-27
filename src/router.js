@@ -7,10 +7,18 @@ import Notice from "./views/login/Notice.vue";
 // import AddShop from "./views/AddShop.vue";
 import Visit from "./views/training/Visit"; //(牛)
 import Train from "./views/training/Train"; // (牛)
+import Mycar from "./views/training/Mycar"; //购物车页面(牛)
+import Visit2 from "./views/training/Visit2"; //进店拜访(牛)
+import Store from "./views/training/Store"; //店内活动、下单页(牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
+import ShopSignIn from "./views/orders/ShopSignIn.vue"; //(罗 商店签到)
+import OrderStatus from "./views/orders/OrderStatus.vue"; //(罗 订单状态)
+import SuccessOrder from "./views/orders/SuccessOrder.vue"; //(罗 成功订单页)
+import StoreVisit from "./views/orders/StoreVisit.vue"; //(罗 进店拜访)
+import StoreActivity from "./views/orders/StoreActivity.vue"; //(罗 店内活动)
+import SuccessOrderStatus from "./views/orders/SuccessOrderStatus.vue";
 import commitOrder from "./views/shopCar/commitOrder.vue";
-import ShopSignIn from "./views/orders/ShopSignIn.vue";
 
 import Activity from "./views/shopCar/shop-activity";
 import productOption from "./views/shopCar/productOption";
@@ -31,12 +39,37 @@ export default new Router({
       component: Login
     },
     {
-      path: "/ShopSignIn",
+      path: "/ShopSignIn", //商店签到页路由(罗)
       name: "ShopSignIn",
       component: ShopSignIn
     },
     {
-      path: "/productOption/:id", //产品选择路由
+      path: "/OrderStatus", //订单状态页路由(罗)
+      name: "OrderStatus",
+      component: OrderStatus
+    },
+    {
+      path: "/SuccessOrder", //成功订单页路由(罗)
+      name: "SuccessOrder",
+      component: SuccessOrder
+    },
+    {
+      path: "/SuccessOrderStatus", //成功订单状态页路由(罗)
+      name: "SuccessOrderStatus",
+      component: SuccessOrderStatus
+    },
+    {
+      path: "/StoreVisit", //进店拜访(罗)
+      name: "StoreVisit",
+      component: StoreVisit
+    },
+    {
+      path: "/StoreActivity/:id", //店内活动(罗)
+      name: "StoreActivity",
+      component: StoreActivity
+    },
+    {
+      path: "/productOption/:id",
       name: "productOption",
       component: productOption
     },
@@ -51,17 +84,32 @@ export default new Router({
       component: AddShop
     },
     {
-      path: "/Visit", // 进店拜访路由 (牛)
+      path: "/Visit",
       name: "Visit",
       component: Visit
     },
     {
-      path: "/Train", // 培训资料 (牛)
+      path: "/Visit2", // 进店拜访路由 (牛)
+      name: "Visit2",
+      component: Visit2
+    },
+    {
+      path: "/Train", // 培训资料 路由(牛)
       name: "Train",
       component: Train
     },
     {
-      path: "/activity", //店内活动路由
+      path: "/Mycar", //购物车 路由(牛)
+      name: "Mycar",
+      component: Mycar
+    },
+    {
+      path: "/Store/:id", //店内活动 路由(牛)
+      name: "Store",
+      component: Store
+    },
+    {
+      path: "/activity", //店内活动路由（加 武）
       name: "activity",
       component: Activity
     },
