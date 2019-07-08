@@ -68,9 +68,9 @@ export default {
 }
 .train-wrap {
   display: flex;
+  justify-content: space-around;
   height: px2rem(87);
   border-bottom: px2rem(2) solid #ccc;
-  justify-content: space-around;
   line-height: px2rem(87);
   background-color: #fafafa;
   padding: 0 px2rem(2) 0 px2rem(2);

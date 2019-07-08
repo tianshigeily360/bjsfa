@@ -21,11 +21,7 @@ export default {
     return axios.get(`/bj/activity?shopId=${shopid}`);
   },
   // #region店内活动
-  // 下单页
-  // 下单页tab标签
-  getOrderMenu() {
-    return axios.get("/bj/orderMenu");
-  },
+
   //进店拜访(牛)
   visitShop() {
     //进店拜访
@@ -44,10 +40,15 @@ export default {
   myCar() {
     return axios.get("/bj/orderList");
   },
-  // 店内活动下单页(牛)
+  // 店内活动页(牛)
   storeActivity(id) {
     return axios.get("bj/activity", { params: { shopId: id } });
   },
+
+  // 复用 下单页(牛)搜索区域
+  // 下单（商品列表）页(牛)
+  // 复用接口: getOrderMenu  getOrderListAll
+  //下单页头部菜单接口 (牛)
 
   //店内活动接口
   getActivity() {
@@ -60,6 +61,11 @@ export default {
   // 下单页商品内容
   getOrderListAll() {
     return axios.get("/bj/orderList");
+  },
+  // 下单页
+  // 下单页tab标签
+  getOrderMenu() {
+    return axios.get("/bj/orderMenu");
   },
   // 下单页商品内容(过滤 menuId)
   getOrderList(params) {

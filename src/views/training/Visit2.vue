@@ -37,7 +37,7 @@
           <!-- 1 地址图标 -->
           <div class="dis">
             <div class="icon iconfont icon-weizhi"></div>
-            <div class="mi">< {{ item.distance }}</div>
+            <div class="mi">{{ item.distance }}</div>
           </div>
           <!-- 右箭头部分 -->
           <div class="you">></div>
@@ -71,16 +71,6 @@ export default {
       });
     },
     getShop(item) {
-      //当前点击的数据存入vuex
-      // this 是什么 当前组件的实例 (相当于一个对象， 对象中有属性和方法)
-      // this.$store 是什么？ 是因为我们在 main.js中 给Vue原型上绑定了这个 store
-      // this.$store.commit 是什么?
-      // this.$store.commit("initgetShaoData") 是什么？
-      // this.$store.commit("initgetShaoData", item) 是什么？
-      // this.$store.commit("initgetShopData", item);
-      // 跳转页面 到 router.js 中配置好的routes 的 path属性 一致的组件
-      // this.$router 是什么？
-      // this.$router.push 是什么 --> 跳转到一个path路径
       this.$router.push(`/Store/${item.id}`); //跳转到店内拜访页
     }
   },

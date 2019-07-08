@@ -6,7 +6,7 @@
     </top-head>
     <!-- 各部分销量显示 -->
     <div class="activity-nav">
-      <div class="activity-top">{{ actName }}</div>
+      <div class="activity-top">{{ actName.name }}</div>
       <div class="activity-ceil">
         <!--  1 本月至今销量 -->
         <div class="ceil-one">
@@ -24,7 +24,7 @@
           <div class="ceil-r">{{ dataList.year }}</div>
         </div>
         <!--  3 核心分销完成率 -->
-        <div iv class="ceil-three">
+        <div class="ceil-three">
           <!-- 核心分销完成率 上半部分 -->
           <div class="ceil-three-top">
             <div class="ceil-three-l">
@@ -55,7 +55,7 @@
 <script>
 import TopHead from "../../components/TopHeader";
 import api from "../../service/api";
-export default {
+export default  {
   name: "store-activity",
   data() {
     return {
@@ -68,7 +68,9 @@ export default {
     "top-head": TopHead
   },
   methods: {
-    toOrder() {}
+    toOrder() {
+      this.$router.push("/Placeorder");
+    }
   },
   created() {
     // 通过路由的id 来传(马)
@@ -77,7 +79,7 @@ export default {
       // 拿到对应商家活动数据
       this.actName = this.$store.state.VisitList.find(
         item => item.id == this.$route.params.id
-      ).name;
+      );
     });
   }
 };
