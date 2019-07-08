@@ -12,8 +12,12 @@
           <!-- index: {{ index }} cart: {{ cart }} -->
           <!-- left -->
           <div class="store-l">
-            <div class="double-big">
-              <div class="double"></div>
+            <!-- 2374982783 -->
+            <div @click="handleOrderParent(cart)" class="double-big">
+              <div
+                :class="{ show: cartsSelected[cart.id] }"
+                class="double"
+              ></div>
             </div>
             <!-- <div class="store-name">新 乐 宝 洁 小 仓 库 孙 丽 娜</div> -->
             <div class="store-name">{{ cart.shopTitle }}</div>
@@ -25,16 +29,19 @@
           </div>
         </div>
 
-        <!-- 商品展示部分 -->
+        <!-- 商品展示部分1 -->
         <div
           v-for="(citem, cindex) in cartsMap[cart.id]"
           :key="cindex"
           class="goods-show"
         >
-          <!-- 左边图片展示部分 -->
+          <!-- 左边图片展示部分 2-->
           <div class="goods-show-left">
-            <div @click="appear" class="show-big">
-              <div :class="{ show: isShow }" class="show-double"></div>
+            <div @click="handleOrderChild(citem)" class="show-big">
+              <div
+                :class="{ show: cartsMapSelected[citem.id] }"
+                class="show-double"
+              ></div>
             </div>
             <div class="show-pic">
               <!-- <img :src=".img" alt /> -->
@@ -101,7 +108,10 @@ export default {
       productData: "", //购物车中的商品
       total: 0, //商品总钱数
       mycar: [],
+      cartsSelected: {}, // 3已经选中的超市 or 店铺，已经选中的id对应的值为true，默认为false 即没有选中
+      cartsMapSelected: {}, //4已经选中的 商品集合
       carts: [
+        // 超市 or 店铺
         {
           id: 3,
           shopTitle: "华联超市",
@@ -114,6 +124,7 @@ export default {
         }
       ],
       cartsMap: {
+        // 商品订单数据
         3: [
           {
             id: 26,
@@ -196,11 +207,24 @@ export default {
     }
   },
   methods: {
+    //5
+    handleOrderParent(item) {
+      const cartsSelected = { ...this.cartsSelected };
+      cartsSelected[item.id] = !cartsSelected[item.id];
+      this.cartsSelected = cartsSelected;
+    },
+    // 6点击商品订单时触发
+    handleOrderChild(citem) {
+      const cartsMapSelected = { ...this.cartsMapSelected };
+      cartsMapSelected[citem.id] = !cartsMapSelected[citem.id];
+      this.cartsMapSelected = cartsMapSelected;
+      console.log("cartsMapSelected:", cartsMapSelected);
+    },
     appear() {
       this.isShow = !this.isShow; // 互斥
     },
 
-    // 点击减少数量按钮的时候触发
+    // 7点击减少数量按钮的时候触发
     handleDecrease(cartId, citem) {
       // 参数：1. cartId 店铺id 2. citem 当前店铺下的订单的商品数据
       console.log("citem :", citem);
@@ -287,6 +311,7 @@ export default {
 }
 .mycar-wrap {
   .my-car {
+    margin-bottom: px2rem(111);
     .th-r {
       font-size: px2rem(28);
     }
@@ -328,7 +353,6 @@ export default {
         @include swrap;
         padding-right: px2rem(30);
         color: #10903d;
-
         .icon {
           font-size: px2rem(30);
           margin-left: px2rem(20);

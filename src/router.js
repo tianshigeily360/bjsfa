@@ -3,10 +3,13 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 // import AddShop from "./views/AddShop.vue";
 import Visit from "./views/training/Visit"; //(牛)
-import Train from "./views/training/Train"; // (牛)
+import Train from "./views/training/Train"; // ( 培训资料 牛)
 import Mycar from "./views/training/Mycar"; //购物车页面(牛)
 import Visit2 from "./views/training/Visit2"; //进店拜访(牛)
 import Store from "./views/training/Store"; //店内活动、下单页(牛)
+import Placeorder from "./views/training/Placeorder"; // 商品列表(牛)
+import product from "./views/training/Product"; // 产品选择页(牛)
+import Photo from "./views/training/Photo"; // 图片上传页(牛)
 import shopCarOrder from "./views/shopCar/shopCarOrder.vue";
 import AddShop from "./views/addShop/AddShop.vue";
 import ShopSignIn from "./views/orders/ShopSignIn.vue"; //(罗 商店签到)
@@ -99,6 +102,21 @@ export default new Router({
       path: "/Store/:id", //店内活动 路由(牛)
       name: "Store",
       component: Store
+    },
+    {
+      path: "/Placeorder/", // 商品列表下单页(牛)
+      name: "Placeorder",
+      component: Placeorder
+    },
+    {
+      path: "/product/:id", // 产品选择页(牛)
+      name: "product",
+      component: product
+    },
+    {
+      path: "/Photo/", // 图片上传页(商店签到)
+      name: "Photo",
+      component: Photo
     },
     {
       path: "/activity", //店内活动路由（加 武）
